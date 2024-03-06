@@ -653,11 +653,11 @@
         Adding 'smini-visible' to an element will show it (display: inline-block) only when the sidebar is in mini mode
         Adding 'smini-visible-block' to an element will show it (display: block) only when the sidebar is in mini mode
       -->
-        @include('layouts.sidebar')
+        @include('admin.layouts.sidebar')
         <!-- END Sidebar -->
 
         <!-- Header -->
-        @include('layouts.header')
+        @include('admin.layouts.header')
         <!-- END Header -->
 
         <!-- Main Container -->
@@ -695,7 +695,9 @@
       Core libraries and functionality
       webpack is putting everything together at assets/_js/main/app.js
     -->
-    <script src="{{ mix('js/app.js') }}"></script>
+{{--    <script src="{{ mix('js/app.js') }}"></script>--}}
+    <script src="{{ asset('js/app.js') }}"></script>
+{{--    <script src="{{ mix('js/app.js') }}"></script>--}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 

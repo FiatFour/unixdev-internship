@@ -34,25 +34,7 @@
       <div class="content-side">
         <ul class="nav-main">
           <li class="nav-main-item">
-            <a class="nav-main-link" href="{{ route('orders.index') }}">
-              <i class="nav-main-link-icon fa fa-box"></i>
-              <span class="nav-main-link-name">คำสั่งซื้อสินค้า</span>
-            </a>
-          </li>
-          <li class="nav-main-item">
-            <a class="nav-main-link" href="{{ route('products.index') }}">
-              <i class="nav-main-link-icon fa fa-box"></i>
-              <span class="nav-main-link-name">สินค้า</span>
-            </a>
-          </li>
-          <li class="nav-main-item">
-            <a class="nav-main-link" href="{{ route('categories.index') }}">
-              <i class="nav-main-link-icon fa fa-toolbox"></i>
-              <span class="nav-main-link-name">ประเภทสินค้า</span>
-            </a>
-          </li>
-          <li class="nav-main-item">
-            <a class="nav-main-link" href="{{ route('users.index') }}">
+            <a class="nav-main-link" href="{{ route('admin.users.index') }}">
               <i class="nav-main-link-icon fa fa-user"></i>
               <span class="nav-main-link-name">บัญชีผู้ใช้งาน</span>
             </a>
