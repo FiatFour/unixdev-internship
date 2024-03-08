@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\RoleEnum;
 use App\Http\Controllers\Controller;
+use App\Models\Department;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -12,7 +18,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.users.index');
+        $lists = User::select('*')->paginate(20); // PER_PAGE
+//        dd($users);
+        return view('admin.users.index', compact('lists'));
     }
 
     /**
@@ -20,7 +28,39 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $user = new User();
+        $page_title = __('manage.add') . __('users.page_title');
+//        $departments = Department::select('id', 'name')->get();
+//        $departmentId = [];
+        $roles = $this->getRole();
+        return view(
+            'admin.users.form',
+            [
+                'user' => $user,
+                'page_title' => $page_title,
+//                'departments' => $departments,
+//                'departmentId' => $departmentId,
+                'roles' => $roles,
+            ]
+        );
+    }
+
+    public function getRole()
+    {
+        $roles = collect([
+            (object) [
+                'id' => RoleEnum::MANAGER,
+                'name' => __('roles.status_' . RoleEnum::MANAGER),
+                'value' => RoleEnum::MANAGER,
+            ],
+            (object) [
+                'id' => RoleEnum::EMPLOYEE,
+                'name' => __('roles.status_' . RoleEnum::EMPLOYEE),
+                'value' => RoleEnum::EMPLOYEE,
+            ],
+        ]);
+
+        return $roles;
     }
 
     /**
@@ -28,38 +68,76 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => [
+                'required', 'string', 'max:255', 'email',
+                Rule::unique('users', 'email')->ignore($request->id),
+            ],
+            'password' => [
+                'required', 'string', 'min:8',
+            ],
+        ], [], [
+            'password' => __('users.password'),
+            'name' => __('users.name'),
+            'email' => __('users.email'),
+//            'departmentId' => __('users.department'),
+            'role' => __('users.role'),
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors' => $validator->errors(),
+            ]);
+        }
+
+        $user = User::firstOrNew(['id' => $request->id]);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->role = $request->role;
+//        $user->departmentId = $request->departmentId;
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        $redirect_route = route('admin.users.index');
+        return $this->responseValidateSuccess($redirect_route);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function edit(User $user)
     {
-        //
+        $roles = $this->getRole();
+        if ($user == null) {
+            return redirect()->route('users.index');
+        }
+        $page_title = __('manage.edit') . __('users.page_title');
+        return view('admin.users.form', compact(
+            'user',
+            'page_title',
+            'roles'
+        ));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function show(User $user)
     {
-        //
+        dd('hi');
+        if ($user == null) {
+            return redirect()->route('admin.users.index');
+        }
+        $page_title = __('manage.show') . __('users.page_title');
+        $view = true;
+        return view('admin.users.form', compact('user', 'view', 'page_title'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function destroy($id)
     {
-        //
-    }
+        $user = User::find($id);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        if (empty($user)) {
+            return $this->responseEmpty('User');
+        }
+
+        $user->delete();
+        return $this->responseDeletedSuccess('User', 'admin.users.index');
     }
 }

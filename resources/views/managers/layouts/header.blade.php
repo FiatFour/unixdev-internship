@@ -14,7 +14,6 @@
             <i class="fa fa-fw fa-user d-sm-none"></i>
             <span class="d-none d-sm-inline-block">
 {{--                {{ Auth::user()->name }}--}}
-                Auth::user()->name
             </span>
             <i class="fa fa-fw fa-angle-down opacity-50 ms-1 d-none d-sm-inline-block"></i>
           </button>

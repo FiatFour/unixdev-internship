@@ -2,44 +2,59 @@
 
 namespace App\View\Components\Forms;
 
-use Closure;
-use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Select extends Component
+class SelectOption extends Component
 {
-    /**
-     * Create a new component instance.
-     */
     public $id;
-    public $value;
+    public $list;
     public $label;
+    public $value;
     public $label_class;
+    public $input_class;
+    public $select_option;
+    public $required;
+    public $select2;
     public $select_class;
-    public $type;
-    public $placeholder;
-    public $items;
-    public $selected;
-    public $name;
+    public $ajax;
+    public $default_option_label;
+    public $multiple;
+    public $model;
+    public $label_suffix;
 
-    public function __construct($id, $label, $optionals = [], $items, $selected, $name)
+    public function __construct($id, $list, $label, $value, $optionals = [])
     {
         $this->id = $id;
-        $this->name = $name;
-        $this->selected = $selected;
+        $this->list = $list;
         $this->label = $label;
-        $this->items = $items;
-        $this->label_class = (isset($optionals['form-label']) ? $optionals['form-label'] : 'text-start col-form-label');
-        $this->select_class = (isset($optionals['select_class']) ? $optionals['select_class'] : 'js-select2');
-        // $this->type = (isset($optionals['type']) ? $optionals['type'] : 'text');
-        $this->placeholder = (isset($optionals['placeholder']) ? $optionals['placeholder'] : 'Choose one..');
+        $this->value = $value;
+        $this->label_class = (isset($optionals['label_class']) ? $optionals['label_class'] : 'text-start  col-form-label');
+        $this->input_class = (isset($optionals['input_class']) ? $optionals['input_class'] : 'col-sm-4');
+        $this->select_option = (isset($optionals['select_option']) ? $optionals['select_option'] : false);
+        $this->required = (isset($optionals['required']) ? $optionals['required'] : false);
+        $this->select2 = (isset($optionals['select2']) ? $optionals['select2'] : true);
+        $this->ajax = (isset($optionals['ajax']) ? $optionals['ajax'] : false);
+        $this->multiple = (isset($optionals['multiple']) ? $optionals['multiple'] : false);
+        $this->default_option_label = (isset($optionals['default_option_label']) ? $optionals['default_option_label'] : __('lang.select_option'));
+        $this->model = (isset($optionals['model']) ? $optionals['model'] : false);
+        $this->label_suffix = (isset($optionals['label_suffix']) ? $optionals['label_suffix'] : null);
+
+        $this->select_class = 'form-control';
+        if ($this->select2) {
+            $this->select_class .= ' js-select2-default';
+        }
+        if (isset($optionals['select_class'])) {
+            $this->select_class = 'form-control ' . $optionals['select_class'];
+        }
     }
 
     /**
      * Get the view / contents that represent the component.
+     *
+     * @return \Illuminate\Contracts\View\View|\Closure|string
      */
-    public function render(): View|Closure|string
+    public function render()
     {
-        return view('components.forms.select');
+        return view('admin.components.forms.select-option');
     }
 }

@@ -11,4 +11,7 @@ return [
     'input_password' => 'กรอก Password',
     'phone' => 'เบอร์โทรศัพท์',
     'input_phone' => 'กรอกเบอร์โทรศัพท์',
+    'select_department' => 'เลือกแผนกย่อย',
+    'role' => 'ตำแหน่ง',
+    'created_at' => 'เป็นสมาชิกเมื่อ',
 ];
