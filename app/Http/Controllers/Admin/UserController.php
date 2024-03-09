@@ -48,12 +48,12 @@ class UserController extends Controller
     public function getRole()
     {
         $roles = collect([
-            (object) [
+            (object)[
                 'id' => RoleEnum::MANAGER,
                 'name' => __('roles.status_' . RoleEnum::MANAGER),
                 'value' => RoleEnum::MANAGER,
             ],
-            (object) [
+            (object)[
                 'id' => RoleEnum::EMPLOYEE,
                 'name' => __('roles.status_' . RoleEnum::EMPLOYEE),
                 'value' => RoleEnum::EMPLOYEE,
@@ -111,22 +111,30 @@ class UserController extends Controller
             return redirect()->route('users.index');
         }
         $page_title = __('manage.edit') . __('users.page_title');
-        return view('admin.users.form', compact(
-            'user',
-            'page_title',
-            'roles'
-        ));
+        return view('admin.users.form',
+            [
+                'page_title' => $page_title,
+                'user' => $user,
+                'roles' => $roles
+            ]
+        );
     }
 
     public function show(User $user)
     {
-        dd('hi');
+        $roles = $this->getRole();
         if ($user == null) {
             return redirect()->route('admin.users.index');
         }
         $page_title = __('manage.show') . __('users.page_title');
         $view = true;
-        return view('admin.users.form', compact('user', 'view', 'page_title'));
+        return view('admin.users.form', [
+                'page_title' => $page_title,
+                'view' => $view,
+                'user' => $user,
+                'roles' => $roles
+            ]
+        );
     }
 
     public function destroy($id)

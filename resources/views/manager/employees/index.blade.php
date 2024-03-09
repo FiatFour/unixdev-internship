@@ -12,7 +12,7 @@
                 {{--                                       :optionals="['placeholder' => __('lang.input_search')]"/>--}}
                 {{--                    </div>--}}
                 {{--                    <div class="col-3">--}}
-                {{--                        <x-forms.select-option id="product_id" :value="$product_id" :list="$products2"--}}
+                {{--                        <x-forms.select -option id="product_id" :value="$product_id" :list="$products2"--}}
                 {{--                                               :label="__('products.page_title')"/>--}}
                 {{--                    </div>--}}
                 {{--                    <div class="col-3">--}}
