@@ -96,4 +96,19 @@ class DepartmentController extends Controller
         return $roles;
     }
 
+    public function show(User $user)
+    {
+        $roles = $this->getRole();
+        if ($user == null) {
+            return redirect()->route('admin.users.index');
+        }
+        $page_title = __('manage.show') . __('users.page_title');
+        $view = true;
+        return view('admin.users.form', [
+                'page_title' => $page_title,
+                'view' => $view,
+                'user' => $user,
+                'roles' => $roles
+            ]
+        );
 }

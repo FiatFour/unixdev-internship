@@ -42,7 +42,7 @@ class UserController extends Controller
     public function create()
     {
         $user = new User();
-        $page_title = __('manage.add') . __('users.page_title');
+        $page_title = __('lang.add') . __('users.page_title');
 //        $departments = Department::select('id', 'name')->get();
 //        $departmentId = [];
         $roles = $this->getRole();
@@ -124,7 +124,7 @@ class UserController extends Controller
             return redirect()->route('users.index');
         }
 
-        $page_title = __('manage.edit') . __('users.page_title');
+        $page_title = __('lang.edit') . __('users.page_title');
         return view('admin.users.form',
             [
                 'page_title' => $page_title,
@@ -140,7 +140,7 @@ class UserController extends Controller
         if ($user == null) {
             return redirect()->route('admin.users.index');
         }
-        $page_title = __('manage.show') . __('users.page_title');
+        $page_title = __('lang.view') . __('users.page_title');
         $view = true;
         return view('admin.users.form', [
                 'page_title' => $page_title,

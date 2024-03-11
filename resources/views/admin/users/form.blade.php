@@ -31,16 +31,17 @@
                     <div class="col-6">
                         <x-forms.select-option id="role" :value="$user->role" :list="$roles"
                                                :label="__('users.role')"/>
-{{--                        <x-forms.radio id="role" :value="$user->role" :label="__('categories.status')"--}}
-{{--                                       :optionals="['label_class' => 'form-label']"/>--}}
+                        {{--                        <x-forms.radio id="role" :value="$user->role" :label="__('categories.status')"--}}
+                        {{--                                       :optionals="['label_class' => 'form-label']"/>--}}
                     </div>
-{{--                    <div class="col-6">--}}
-{{--                        <x-forms.select-option id="departmentId[]" :value="$departmentId" :list="$departments" :label="__('users.select_department')" :optionals="['multiple' => true]" />--}}
-{{--                    </div>--}}
+                    {{--                    <div class="col-6">--}}
+                    {{--                        <x-forms.select-option id="departmentId[]" :value="$departmentId" :list="$departments" :label="__('users.select_department')" :optionals="['multiple' => true]" />--}}
+                    {{--                    </div>--}}
                 </div>
                 <div class="row">
                     <input type="hidden" name="id" id="id" value="{{ $user->id }}">
-                    <x-forms.submit-group :optionals="['url' => 'admin.users.index', 'view' => empty($view) ? null : $view]"/>
+                    <x-forms.submit-group
+                        :optionals="['url' => 'admin.users.index', 'view' => empty($view) ? null : $view]"/>
                 </div>
             </form>
         </div>
@@ -57,11 +58,10 @@
     <script>
         $view = '{{ isset($view) }}';
         if ($view) {
-            $('#username').prop('disabled', true);
             $('#name').prop('disabled', true);
             $('#password').prop('disabled', true);
             $('#email').prop('disabled', true);
-            $('#phone').prop('disabled', true);
+            $('#role').prop('disabled', true);
         }
     </script>
 @endpush
