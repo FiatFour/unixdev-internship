@@ -30,6 +30,24 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function scopeSearch($query, $s, $request)
+    {
+        return $query->where(function ($q) use ($s, $request) {
+            if (!empty($s)) {
+                $q->where(function ($q2) use ($s, $request) {
+                    $q2->where('users.name', 'like', '%' . $s . '%');
+                    $q2->orWhere('users.email', 'like', '%' . $s . '%');
+                });
+            }
+            if (!empty($request->name)) {
+                $q->where('users.id', $request->name);
+            }
+            if (!empty($request->role)) {
+                $q->where('users.role', $request->role);
+            }
+        });
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

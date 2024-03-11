@@ -16,6 +16,7 @@ return new class extends Migration
             $table->uuid('manager_id')->nullable();
             $table->string('name');
             $table->foreign('manager_id')->references('id')->on('users')->nullOnDelete();
+            $table->timestamps();
         });
 
         Schema::table('users', function (Blueprint $table) {

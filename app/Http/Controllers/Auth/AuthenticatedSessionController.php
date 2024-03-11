@@ -38,6 +38,14 @@ class AuthenticatedSessionController extends Controller
         }
         else if(Auth::guard('web')->user()->role == RoleEnum::EMPLOYEE){
             return redirect()->intended(RouteServiceProvider::EMPLOYEE_HOME);
+        }else{
+            Auth::guard('web')->logout();
+
+            $request->session()->invalidate();
+
+            $request->session()->regenerateToken();
+
+            return redirect('/');
         }
 
         return redirect()->intended(RouteServiceProvider::HOME);

@@ -16,11 +16,24 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $lists = User::select('*')->paginate(20); // PER_PAGE
+        $s = $request->s;
+        $name = $request->name;
+        $role = $request->role;
+
+        $lists = User::select('*')->search($request->s, $request)->paginate(20); // PER_PAGE
+
+        $roles = $this->getRole();
 //        dd($users);
-        return view('admin.users.index', compact('lists'));
+        return view('admin.users.index', [
+            'lists' => $lists,
+            'roles' => $roles,
+            's' => $s,
+            'name' => $name,
+            'role' => $role,
+
+        ]);
     }
 
     /**
@@ -110,6 +123,7 @@ class UserController extends Controller
         if ($user == null) {
             return redirect()->route('users.index');
         }
+
         $page_title = __('manage.edit') . __('users.page_title');
         return view('admin.users.form',
             [

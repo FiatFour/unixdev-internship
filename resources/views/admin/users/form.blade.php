@@ -31,8 +31,8 @@
                     <div class="col-6">
                         <x-forms.select-option id="role" :value="$user->role" :list="$roles"
                                                :label="__('users.role')"/>
-                        <x-forms.radio id="role" :value="$user->role" :label="__('categories.status')"
-                                       :optionals="['label_class' => 'form-label']"/>
+{{--                        <x-forms.radio id="role" :value="$user->role" :label="__('categories.status')"--}}
+{{--                                       :optionals="['label_class' => 'form-label']"/>--}}
                     </div>
 {{--                    <div class="col-6">--}}
 {{--                        <x-forms.select-option id="departmentId[]" :value="$departmentId" :list="$departments" :label="__('users.select_department')" :optionals="['multiple' => true]" />--}}

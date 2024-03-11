@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('employee_departments', function (Blueprint $table) {
+            $table->uuid('id')->primary();
             $table->uuid('user_id');
             $table->uuid('department_id');
-            $table->primary(['user_id', 'department_id'], 'user_departments_pk');
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreign('department_id')->references('id')->on('departments')->cascadeOnDelete();
         });

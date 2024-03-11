@@ -26,11 +26,9 @@
                 <i class="far fa-fw fa-user me-1"></i> Profile
               </a>
               <div role="separator" class="dropdown-divider"></div>
-              <a class="dropdown-item" href="
-              {{ route('logout') }}
-              ">
-                <i class="far fa-fw fa-arrow-alt-circle-left me-1"></i> Sign Out
-              </a>
+                <a class="dropdown-item" href="{{ route('singout') }}">
+                    <i class="far fa-fw fa-arrow-alt-circle-left me-1"></i> Sign Out
+                </a>
             </div>
           </div>
         </div>
