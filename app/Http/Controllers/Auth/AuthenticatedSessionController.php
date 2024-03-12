@@ -6,9 +6,11 @@ use App\Enums\RoleEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
+use Dotenv\Exception\ValidationException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
@@ -27,7 +29,6 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-
         $request->session()->regenerate();
 
         if(Auth::guard('web')->user()->role == RoleEnum::ADMIN){
@@ -38,17 +39,14 @@ class AuthenticatedSessionController extends Controller
         }
         else if(Auth::guard('web')->user()->role == RoleEnum::EMPLOYEE){
             return redirect()->intended(RouteServiceProvider::EMPLOYEE_HOME);
-        }else{
-            Auth::guard('web')->logout();
-
-            $request->session()->invalidate();
-
-            $request->session()->regenerateToken();
-
-            return redirect('/');
         }
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        Auth::guard('web')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        Session::flash('error', 'Please contact admin to config a role.');
+
+        return redirect()->route('login');
     }
 
     /**

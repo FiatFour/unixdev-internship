@@ -20,6 +20,11 @@ function get_count_order_detail($id){
     return $count;
 }
 
+function getCountEmployeeDepartment($id){
+    $count = \App\Models\EmployeeDepartment::where('department_id', $id)->count();
+    return $count;
+}
+
 
 if (!function_exists('carbon')) {
     function carbon($time = null, $tz = null)

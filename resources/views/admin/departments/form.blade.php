@@ -26,9 +26,18 @@
                 </div>
                 <div class="row mb-4">
                     <div class="col-12">
-                        <x-forms.select-option id="employeeId[]" :value="$employeeId" :list="$employees"
-                                               :label="__('departments.select_employee')"
-                                               :optionals="['multiple' => true]"/>
+                        @if (isset($view))
+                            <x-forms.select-option id="employeeId" :value="$employeeId" :list="$employees"
+                                                   :label="__('departments.select_employee')"
+                                                   :optionals="['multiple' => true, 'disabled' => true]"
+                            />
+                        @else
+                            <x-forms.select-option id="employeeId[]" :value="$employeeId" :list="$employees"
+                                                   :label="__('departments.select_employee')"
+                                                   :optionals="['multiple' => true]"
+                            />
+                        @endif
+
                     </div>
                 </div>
                 <div class="row">
@@ -51,11 +60,9 @@
     <script>
         $view = '{{ isset($view) }}';
         if ($view) {
-            $('#username').prop('disabled', true);
             $('#name').prop('disabled', true);
-            $('#password').prop('disabled', true);
-            $('#email').prop('disabled', true);
-            $('#phone').prop('disabled', true);
+            $('#managerId').prop('disabled', true);
+            $('#employeeId').prop('disabled', true);
         }
     </script>
 @endpush

@@ -6,10 +6,14 @@
         @csrf
 
         <!-- Email Address -->
+
         <div>
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            @if (Session::has('error'))
+                <div class="text-sm text-red-600 space-y-1">{{ Session::get('error') }}</div>
+            @endif
         </div>
 
         <!-- Password -->

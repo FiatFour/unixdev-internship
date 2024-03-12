@@ -41,7 +41,7 @@
                             <th>{{ __('users.name') }}</th>
                             <th>{{ __('users.email') }}</th>
                             <th>{{ __('users.role') }}</th>
-                            <th>{{ __('users.created_at') }}</th>
+                            <th>{{ __('lang.created_at') }}</th>
                             <th class="text-center">{{ __('manage.tools') }}</th>
                         </tr>
                         </thead>
@@ -61,8 +61,7 @@
                                             {{ $d->role }}
                                         </td>
                                         <td class="d-none d-sm-table-cell">
-{{--                                            {{ get_thai_date_format($d->created_at, 'd/m/Y') }}--}}
-                                            zz
+                                            {{ get_thai_date_format($d->created_at, 'd/m/Y') }}
                                         </td>
                                         <td class="sticky-col text-center">
                                             @include('components.dropdown-action', [

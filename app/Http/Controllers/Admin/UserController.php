@@ -18,14 +18,13 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+
         $s = $request->s;
         $name = $request->name;
         $role = $request->role;
-
-        $lists = User::select('*')->search($request->s, $request)->paginate(20); // PER_PAGE
-
+        $lists = User::select('*')->search($request->s, $request)->paginate(PER_PAGE); // PER_PAGE
         $roles = $this->getRole();
-//        dd($users);
+
         return view('admin.users.index', [
             'lists' => $lists,
             'roles' => $roles,
@@ -43,16 +42,14 @@ class UserController extends Controller
     {
         $user = new User();
         $page_title = __('lang.add') . __('users.page_title');
-//        $departments = Department::select('id', 'name')->get();
-//        $departmentId = [];
         $roles = $this->getRole();
+
+
         return view(
             'admin.users.form',
             [
                 'user' => $user,
                 'page_title' => $page_title,
-//                'departments' => $departments,
-//                'departmentId' => $departmentId,
                 'roles' => $roles,
             ]
         );

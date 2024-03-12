@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class EmployeeDepartment extends Model
 {
-    use HasFactory, PrimaryUuid;
+    use HasFactory;
 
     protected $table = 'employee_departments';
 //    protected $primaryKey = ['user_id', 'department_id'];
@@ -18,7 +18,6 @@ class EmployeeDepartment extends Model
     protected $keyType = 'string';
 
     protected $fillable = [
-        'id',
         'user_id',
         'department_id',
     ];
