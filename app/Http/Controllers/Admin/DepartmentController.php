@@ -152,7 +152,6 @@ class DepartmentController extends Controller
 
     public function show(Department $department)
     {
-        $roles = $this->getRole();
         if ($department == null) {
             return redirect()->route('admin.departments.index');
         }
@@ -160,6 +159,8 @@ class DepartmentController extends Controller
 //        $employees = User::select('users.id', 'users.name', 'departments.manager_id')
 //            ->leftJoin('departments', 'users.id', '!=', 'departments.manager_id')
 //            ->where('role', '!=', RoleEnum::ADMIN)->get();
+
+        $roles = $this->getRole();
 
         $employees = User::select('users.id', 'users.name')
             ->where('role', '!=', RoleEnum::ADMIN)->get();
