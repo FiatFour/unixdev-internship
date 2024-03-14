@@ -20,7 +20,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     public $incrementing = false;
-    public $timestamps = false;
+    public $timestamps = true;
     protected $keyType = 'string';
     protected $fillable = [
         'id',

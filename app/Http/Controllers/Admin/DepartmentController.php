@@ -55,10 +55,10 @@ class DepartmentController extends Controller
             ->where('role', '!=', RoleEnum::ADMIN)->get();
 
         $managers = User::select('users.id', 'users.name', 'departments.manager_id')
-            ->leftJoin('departments', 'users.id', '!=', 'departments.manager_id')
+            ->leftJoin('departments', 'users.id', '=', 'departments.manager_id')
             ->where([
                 ['users.role', '=', RoleEnum::MANAGER],
-                ['departments.manager_id', '!=', 'users.id']
+//                ['departments.manager_id', '!=', 'users.id']
             ])
             ->get();
 
@@ -80,10 +80,11 @@ class DepartmentController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => [
                 'required', 'string', 'max:255',
-                Rule::unique('users', 'name')->ignore($request->id),
+                Rule::unique('departments', 'name')->ignore($request->id),
             ],
             'managerId' => [
-                'required'
+                'required',
+                Rule::unique('departments', 'manager_id')->ignore($request->id),
             ],
 //            'employeeId' => [
 //                'required',
@@ -104,6 +105,10 @@ class DepartmentController extends Controller
         }
 
         $department = Department::firstOrNew(['id' => $request->id]);
+//        if($department->created_at = null){
+//            $department->created_at = date('Y-m-d H:i:s');
+//        }
+//        $department->updated_at = date('Y-m-d H:i:s');
         $department->name = $request->name;
         $department->manager_id = $request->managerId;
         $department->save();

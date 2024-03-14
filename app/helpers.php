@@ -25,6 +25,13 @@ function getCountEmployeeDepartment($id){
     return $count;
 }
 
+function createdAtCheck($d){
+    if($d->created_at = null){
+        $d->created_at = date('Y-m-d H:i:s');
+    }
+    return $d->updated_at = date('Y-m-d H:i:s');
+}
+
 
 if (!function_exists('carbon')) {
     function carbon($time = null, $tz = null)

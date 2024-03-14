@@ -352,7 +352,7 @@
                                                 <img class="img-avatar img-avatar48"
                                                      src="assets/media/avatars/avatar1.jpg" alt="">
                                                 <span
-                                                        class="overlay-item item item-tiny item-circle border border-2 border-white bg-success"></span>
+                                                    class="overlay-item item item-tiny item-circle border border-2 border-white bg-success"></span>
                                             </div>
                                             <div class="flex-grow-1">
                                                 <div class="fw-semibold">Amber Harvey</div>
@@ -366,7 +366,7 @@
                                                 <img class="img-avatar img-avatar48"
                                                      src="assets/media/avatars/avatar9.jpg" alt="">
                                                 <span
-                                                        class="overlay-item item item-tiny item-circle border border-2 border-white bg-success"></span>
+                                                    class="overlay-item item item-tiny item-circle border border-2 border-white bg-success"></span>
                                             </div>
                                             <div class="flex-grow-1">
                                                 <div class="fw-semibold">Albert Ray</div>
@@ -380,7 +380,7 @@
                                                 <img class="img-avatar img-avatar48"
                                                      src="assets/media/avatars/avatar2.jpg" alt="">
                                                 <span
-                                                        class="overlay-item item item-tiny item-circle border border-2 border-white bg-success"></span>
+                                                    class="overlay-item item item-tiny item-circle border border-2 border-white bg-success"></span>
                                             </div>
                                             <div class="flex-grow-1">
                                                 <div class="fw-semibold">Andrea Gardner</div>
@@ -404,7 +404,7 @@
                                                 <img class="img-avatar img-avatar48"
                                                      src="assets/media/avatars/avatar5.jpg" alt="">
                                                 <span
-                                                        class="overlay-item item item-tiny item-circle border border-2 border-white bg-danger"></span>
+                                                    class="overlay-item item item-tiny item-circle border border-2 border-white bg-danger"></span>
                                             </div>
                                             <div class="flex-grow-1">
                                                 <div class="fw-semibold">Amber Harvey</div>
@@ -428,7 +428,7 @@
                                                 <img class="img-avatar img-avatar48"
                                                      src="assets/media/avatars/avatar10.jpg" alt="">
                                                 <span
-                                                        class="overlay-item item item-tiny item-circle border border-2 border-white bg-warning"></span>
+                                                    class="overlay-item item item-tiny item-circle border border-2 border-white bg-warning"></span>
                                             </div>
                                             <div class="flex-grow-1">
                                                 <div class="fw-semibold">Scott Young</div>
@@ -442,7 +442,7 @@
                                                 <img class="img-avatar img-avatar48"
                                                      src="assets/media/avatars/avatar7.jpg" alt="">
                                                 <span
-                                                        class="overlay-item item item-tiny item-circle border border-2 border-white bg-warning"></span>
+                                                    class="overlay-item item item-tiny item-circle border border-2 border-white bg-warning"></span>
                                             </div>
                                             <div class="flex-grow-1">
                                                 <div class="fw-semibold">Andrea Gardner</div>
@@ -466,7 +466,7 @@
                                                 <img class="img-avatar img-avatar48"
                                                      src="assets/media/avatars/avatar10.jpg" alt="">
                                                 <span
-                                                        class="overlay-item item item-tiny item-circle border border-2 border-white bg-muted"></span>
+                                                    class="overlay-item item item-tiny item-circle border border-2 border-white bg-muted"></span>
                                             </div>
                                             <div class="flex-grow-1">
                                                 <div class="fw-semibold">Carl Wells</div>
@@ -480,7 +480,7 @@
                                                 <img class="img-avatar img-avatar48"
                                                      src="assets/media/avatars/avatar1.jpg" alt="">
                                                 <span
-                                                        class="overlay-item item item-tiny item-circle border border-2 border-white bg-muted"></span>
+                                                    class="overlay-item item item-tiny item-circle border border-2 border-white bg-muted"></span>
                                             </div>
                                             <div class="flex-grow-1">
                                                 <div class="fw-semibold">Amanda Powell</div>
@@ -494,7 +494,7 @@
                                                 <img class="img-avatar img-avatar48"
                                                      src="assets/media/avatars/avatar1.jpg" alt="">
                                                 <span
-                                                        class="overlay-item item item-tiny item-circle border border-2 border-white bg-muted"></span>
+                                                    class="overlay-item item item-tiny item-circle border border-2 border-white bg-muted"></span>
                                             </div>
                                             <div class="flex-grow-1">
                                                 <div class="fw-semibold">Amber Harvey</div>
@@ -508,7 +508,7 @@
                                                 <img class="img-avatar img-avatar48"
                                                      src="assets/media/avatars/avatar13.jpg" alt="">
                                                 <span
-                                                        class="overlay-item item item-tiny item-circle border border-2 border-white bg-muted"></span>
+                                                    class="overlay-item item item-tiny item-circle border border-2 border-white bg-muted"></span>
                                             </div>
                                             <div class="flex-grow-1">
                                                 <div class="fw-semibold">Albert Ray</div>
@@ -653,11 +653,11 @@
     Adding 'smini-visible' to an element will show it (display: inline-block) only when the sidebar is in mini mode
     Adding 'smini-visible-block' to an element will show it (display: block) only when the sidebar is in mini mode
   -->
-    @include('admin.Backup.layouts.sidebar')
+    @include('manager.layouts.sidebar')
     <!-- END Sidebar -->
 
     <!-- Header -->
-    @include('admin.Backup.layouts.header')
+    @include('manager.layouts.header')
     <!-- END Header -->
 
     <!-- Main Container -->
@@ -676,8 +676,7 @@
             <div class="row fs-sm">
                 <div class="col-sm-6 order-sm-2 mb-1 mb-sm-0 text-center text-sm-end">
                     Crafted with <i class="fa fa-heart text-danger"></i> by <a class="fw-semibold"
-                                                                               href="https://1.envato.market/ydb"
-                                                                               target="_blank">pixelcave</a>
+                                                                               href="https://1.envato.market/ydb" target="_blank">pixelcave</a>
                 </div>
                 <div class="col-sm-6 order-sm-1 text-center text-sm-start">
                     <a class="fw-semibold" href="https://1.envato.market/r6y" target="_blank">Dashmix 5.1</a>
@@ -696,9 +695,8 @@
   Core libraries and functionality
   webpack is putting everything together at assets/_js/main/app.js
 -->
-{{--    <script src="{{ mix('js/app.js') }}"></script>--}}
+{{--<script src="{{ mix('js/app.js') }}"></script>--}}
 <script src="{{ asset('js/app.js') }}"></script>
-{{--    <script src="{{ mix('js/app.js') }}"></script>--}}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 

@@ -103,6 +103,10 @@ class UserController extends Controller
         }
 
         $user = User::firstOrNew(['id' => $request->id]);
+//        if($user->created_at = null){
+//            $user->created_at = date('Y-m-d H:i:s');
+//        }
+//        $user->updated_at = date('Y-m-d H:i:s');
         $user->name = $request->name;
         $user->email = $request->email;
         $user->role = $request->role;

@@ -11,7 +11,7 @@ class Department extends Model
     use HasFactory, PrimaryUuid;
 
     public $incrementing = false;
-    public $timestamps = false;
+    public $timestamps = true;
     protected $keyType = 'string';
 
     protected $fillable = [
