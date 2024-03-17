@@ -689,14 +689,14 @@
 </div>
 <!-- END Page Container -->
 
+
 <!--
   Dashmix JS
 
   Core libraries and functionality
   webpack is putting everything together at assets/_js/main/app.js
 -->
-{{--<script src="{{ mix('js/app.js') }}"></script>--}}
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ mix('js/app.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 

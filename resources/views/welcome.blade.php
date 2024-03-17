@@ -129,5 +129,32 @@
                 </div>
             </div>
         </div>
+        <div id="attorney">
+
+        </div>
     </body>
 </html>
+
+
+<script src="{{ mix('js/app.js') }}"></script>
+
+<script>
+    let addAttorneyVue = new Vue({
+        el: '#attorney',
+        data: {
+            attorney_list: @if (isset($attorney_list))
+                @json($attorney_list)
+                @else
+            []
+            @endif ,
+            edit_index: null,
+            total_car: 0,
+            mode: null,
+        },
+        methods: {
+
+        },
+        props: ['title'],
+    });
+</script>
+

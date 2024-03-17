@@ -94,3 +94,4 @@
 
 @include('components.sweetalert')
 @include('components.list-delete')
+

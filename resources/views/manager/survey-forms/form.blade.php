@@ -16,10 +16,14 @@
 
                     <div class="row mb-4">
                         <div class="col-13">
-                            <x-forms.input id="survey_name" :value="$surveyForm->name"
+                            <x-forms.input id="surveyName" :value="$surveyForm->name"
                                            :label="__('survey_forms.name')"
                                            :optionals="['placeholder' => __('survey_forms.input_name')]"/>
                         </div>
+{{--                        <x-forms.input-new-line id="oneChoiceTitle" :value="null"--}}
+{{--                                                :name="'oneChoiceTitle'"--}}
+{{--                                                :label="__('survey_forms.one_choice')"--}}
+{{--                                                :optionals="['required' => true]"/>--}}
                     </div>
 
                 <x-blocks.block :title="__('')">
@@ -30,11 +34,16 @@
 {{--                    @endif--}}
 
                      @include('manager.survey-forms.sections.one-choice')
+                </x-blocks.block>
 
-{{--                    <x-slot name="options">--}}
-{{--                        <button type="button" class="btn btn-primary" onclick="openExtraModal()"><i--}}
-{{--                                class="icon-add-circle"></i>{{ __('lang.add') }}</button>--}}
-{{--                    </x-slot>--}}
+                <x-blocks.block :title="__('')">
+{{--                    @if (isset($view))--}}
+{{--                        @include('orders.sections.views.order-detail')--}}
+{{--                    @else--}}
+{{--                        @include('orders.sections.order-detail')--}}
+{{--                    @endif--}}
+
+                     @include('manager.survey-forms.sections.one-choice')
                 </x-blocks.block>
 
                 <div class="row">
@@ -49,11 +58,14 @@
 
 
 {{--@include('manager.survey-forms.scripts.rental-line-script')--}}
+
 @include('components.select2-default')
 @include('components.sweetalert')
 @include('components.form-save', [
-    'store_uri' => route('admin.departments.store'),
+    'store_uri' => route('manager.survey-forms.store'),
 ])
+@include('manager.survey-forms.scripts.one-answer-script')
+@include('manager.survey-forms.scripts.one-choice-script')
 
 @push('scripts')
     <script>
@@ -65,3 +77,5 @@
         }
     </script>
 @endpush
+
+
