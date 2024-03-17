@@ -5,7 +5,7 @@
             data: {
                 modalOneChoices: [],
                 oneChoices: [],
-                editIndex: null,
+                editManyIndex: null,
                 mode: null,
             },
             watch: {},
@@ -48,20 +48,20 @@
                     this.setOneChoiceIndex(index);
                     this.loadOneChoiceModalData(index);
                     this.mode = 'edit';
-                    console.log(this.editIndex);
+                    console.log(this.editManyIndex);
                     this.openModalOneChoice();
                 },
                 clearOneChoiceModalData: function () {
                     $("#oneChoiceTitle").val('');
-                    $("#isOrderByTrue").prop('checked', true);
+                    $("#isOrderByTrueOneChoice").prop('checked', true);
                 },
                 loadOneChoiceModalData: function (oneChoiceIndex) {
                     var temp = this.oneChoices[oneChoiceIndex];
                     $("#oneChoiceTitle").val(temp.name);
                     if (temp.isOrderBy == 1) {
-                        $("#isOrderByTrue").prop('checked', true);
+                        $("#isOrderByTrueOneChoice").prop('checked', true);
                     } else {
-                        $("#isOrderByFalse").prop('checked', true)
+                        $("#isOrderByFalseOneChoice").prop('checked', true)
                     }
                     // $("#id_field").val(temp.id);
                     var _modalOneChoices = [...this.modalOneChoices];
@@ -87,16 +87,16 @@
                         return false;
                     }
                     if (this.mode == 'edit') {
-                        this.saveOneChoiceEdit(oneChoices, this.editIndex);
+                        this.saveOneChoiceEdit(oneChoices, this.editManyIndex);
                     } else {
                         this.saveOneChoiceAdd(oneChoices);
                     }
                     var cloneAllAnswer = [...this.modalOneChoices]; //clone in js [...array]
-                    cloneAllAnswer = cloneAllAnswer.filter(obj => obj.oneChoiceIndex !== this.editIndex);
+                    cloneAllAnswer = cloneAllAnswer.filter(obj => obj.oneChoiceIndex !== this.editManyIndex);
                     var returnOneAnswer = addOneAnswerVue.getOneAnswer();
                     this.modalOneChoices = cloneAllAnswer.concat(returnOneAnswer);
 
-                    this.editIndex = null;
+                    this.editManyIndex = null;
                     this.displayOneChoice();
                     this.hideOneChoiceModal();
                 },
@@ -108,17 +108,17 @@
                 },
                 getOneChoiceDataFromModal: function () {
                     let name = document.getElementById("oneChoiceTitle").value;
-                    let isOrderBy = $('input[name="isOrderBy"]:checked').val()
+                    let isOrderBy = $('input[name="isOrderByOneChoice"]:checked').val()
                     return {
                         name: name,
                         isOrderBy: isOrderBy,
                     };
                 },
                 setOneChoiceIndex: function (index) {
-                    this.editIndex = index;
+                    this.editManyIndex = index;
                 },
                 getOneChoiceIndex: function () {
-                    return this.editIndex;
+                    return this.editManyIndex;
                 },
                 number_format(number) {
                     return number_format(number);

@@ -1,10 +1,10 @@
 <div id="many-choices" v-cloak data-detail-uri="" data-title="">
     <div class="table-wrap">
         <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-            <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">{{ __('survey_forms.one_choice') }}</h1>
+            <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">{{ __('survey_forms.many_choice') }}</h1>
             <a href="#" type="button" class="btn btn-alt-primary my-2" onclick="openManyChoiceModal()"
                id="openModal">
-                <i class="fa fa-fw fa-plus me-1"></i> {{ __('manage.add') . __('survey_forms.one_choice') }}
+                <i class="fa fa-fw fa-plus me-1"></i> {{ __('manage.add') . __('survey_forms.many_choice') }}
             </a>
         </div>
 
@@ -15,8 +15,8 @@
                 <th class="sticky-col text-center">{{ __('manage.tools') }}</th>
             </thead>
 
-            <tbody v-if="oneChoices.length > 0">
-            <tr v-for="(item, index) in oneChoices">
+            <tbody v-if="manyChoices.length > 0">
+            <tr v-for="(item, index) in manyChoices">
                 <td>@{{ index + 1 }}</td>
                 <td>@{{ item.name }}</td>
                 <td class="sticky-col text-center">
@@ -29,17 +29,17 @@
                                     <i class="fa fa-ellipsis-vertical"></i>
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdown-dropleft-dark">
-                                    <a class="dropdown-item" v-on:click="editOneChoice(index)"><i
+                                    <a class="dropdown-item" v-on:click="editManyChoice(index)"><i
                                             class="far fa-edit me-1"></i> แก้ไข</a>
                                     <a class="dropdown-item btn-delete-row"
-                                       v-on:click="removeOneChoice(index)"><i
+                                       v-on:click="removeManyChoice(index)"><i
                                             class="fa fa-trash-alt me-1"></i> ลบ</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </td>
-                <input type="hidden" v-bind:name="'oneChoices['+ index+ '][id]'" v-bind:value="item.id">
+                <input type="hidden" v-bind:name="'manyChoices['+ index+ '][id]'" v-bind:value="item.id">
 {{--                <input type="hidden" v-bind:name="'order_detail['+ index+ '][order_id]'" id="order_id"--}}
 {{--                       v-bind:value="item.order_id">--}}
 {{--                <input type="hidden" v-bind:name="'order_detail['+ index+ '][product_id]'" id="product_id"--}}
@@ -47,39 +47,39 @@
 {{--                <input type="hidden" v-bind:name="'order_detail['+ index+ '][price]'" id="price"--}}
 {{--                       v-bind:value="item.price">--}}
 
-                <div v-for="(item, index) in oneChoices">
-                    <input type="hidden" v-bind:name="'oneChoices['+ index+ '][id]'"
+                <div v-for="(item, index) in manyChoices">
+                    <input type="hidden" v-bind:name="'manyChoices['+ index+ '][id]'"
                            v-bind:value="item.id">
-                    <input type="hidden" v-bind:name="'oneChoices['+ index+ '][name]'" v-bind:value="item.name">
-                    <input type="hidden" v-bind:name="'oneChoices['+ index+ '][isOrderBy]'" v-bind:value="item.isOrderBy">
+                    <input type="hidden" v-bind:name="'manyChoices['+ index+ '][name]'" v-bind:value="item.name">
+                    <input type="hidden" v-bind:name="'manyChoices['+ index+ '][isOrderBy]'" v-bind:value="item.isOrderBy">
                 </div>
 
-{{--                <div v-for="(item, index) in modalOneChoices">--}}
-{{--                    <input type="hidden" v-bind:name="'oneChoiceQuestions[' + index +'][' + item.oneChoiceIndex +'][id]'"--}}
+{{--                <div v-for="(item, index) in modalManyChoices">--}}
+{{--                    <input type="hidden" v-bind:name="'manyChoiceQuestions[' + index +'][' + item.manyChoiceIndex +'][id]'"--}}
 {{--                           v-bind:value="item.id">--}}
-{{--                    <input type="hidden" v-bind:name="'oneChoiceQuestions[' + index +'][' + item.oneChoiceIndex +'][name]'"--}}
+{{--                    <input type="hidden" v-bind:name="'manyChoiceQuestions[' + index +'][' + item.manyChoiceIndex +'][name]'"--}}
 {{--                           v-bind:value="item.name">--}}
-{{--                    <input type="hidden" v-bind:name="'oneChoiceQuestions[' + index +'][' + item.oneChoiceIndex +'][score]'"--}}
+{{--                    <input type="hidden" v-bind:name="'manyChoiceQuestions[' + index +'][' + item.manyChoiceIndex +'][score]'"--}}
 {{--                           v-bind:value="item.score">--}}
-{{--                    <input type="hidden" v-bind:name="'oneChoiceQuestions[' + index +'][' + item.oneChoiceIndex +'][oneChoiceIndex]'"--}}
-{{--                           v-bind:value="item.oneChoiceIndex">--}}
+{{--                    <input type="hidden" v-bind:name="'manyChoiceQuestions[' + index +'][' + item.manyChoiceIndex +'][manyChoiceIndex]'"--}}
+{{--                           v-bind:value="item.manyChoiceIndex">--}}
 {{--                </div>--}}
-                <div v-for="(item, index) in modalOneChoices">
-                    <input type="hidden" v-bind:name="'oneChoiceQuestions[' + index +'][id]'"
+                <div v-for="(item, index) in modalManyChoices">
+                    <input type="hidden" v-bind:name="'manyChoiceQuestions[' + index +'][id]'"
                            v-bind:value="item.id">
-                    <input type="hidden" v-bind:name="'oneChoiceQuestions[' + index +'][name]'"
+                    <input type="hidden" v-bind:name="'manyChoiceQuestions[' + index +'][name]'"
                            v-bind:value="item.name">
-                    <input type="hidden" v-bind:name="'oneChoiceQuestions[' + index +'][score]'"
+                    <input type="hidden" v-bind:name="'manyChoiceQuestions[' + index +'][score]'"
                            v-bind:value="item.score">
-                    <input type="hidden" v-bind:name="'oneChoiceQuestions[' + index +'][oneChoiceIndex]'"
-                           v-bind:value="item.oneChoiceIndex">
+                    <input type="hidden" v-bind:name="'manyChoiceQuestions[' + index +'][manyChoiceIndex]'"
+                           v-bind:value="item.manyChoiceIndex">
                 </div>
             </tr>
             </tbody>
             <tbody v-else>
             <tr class="table-empty">
                 <td class="text-center" colspan="8">“
-                    {{ __('manage.no_list') . __('survey_forms.one_choice') }} “
+                    {{ __('manage.no_list') . __('survey_forms.many_choice') }} “
                 </td>
             </tr>
             </tbody>
@@ -87,6 +87,6 @@
     </div>
 </div>
 
-@include('manager.survey-forms.modals.one-choice')
+@include('manager.survey-forms.modals.many-choice')
 
 

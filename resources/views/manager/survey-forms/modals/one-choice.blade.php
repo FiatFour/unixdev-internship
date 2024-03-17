@@ -10,11 +10,11 @@
         <label class="text-start col-form-label form-label">แบบตั้งค่าแสดงผล</label><br>
         <div class="space-x-2">
             <div class="form-check form-check-inline mt-1">
-                <input class="form-check-input col-sm-4" type="radio" name="isOrderBy" value="1" id="isOrderByTrue">
+                <input class="form-check-input col-sm-4" type="radio" name="isOrderByOneChoice" value="1" id="isOrderByTrueOneChoice">
                 <label class="form-check-label">เรียง</label>
             </div>
             <div class="form-check form-check-inline mt-1">
-                <input class="form-check-input col-sm-4" type="radio" name="isOrderBy" value="2" id="isOrderByFalse">
+                <input class="form-check-input col-sm-4" type="radio" name="isOrderByOneChoice" value="2" id="isOrderByFalseOneChoice">
                 <label class="form-check-label">ไม่ใช้งาน</label>
             </div>
         </div>

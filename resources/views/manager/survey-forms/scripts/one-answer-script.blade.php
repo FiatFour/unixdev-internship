@@ -17,7 +17,6 @@
                 },
                 setOneAnswer: function (answerData){
                     this.modalOneChoices = answerData;
-
                 },
                 pushOneChoiceLine: function(name, score, oneChoiceIndex){
                     let data = {

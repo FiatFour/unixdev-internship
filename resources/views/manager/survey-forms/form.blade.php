@@ -43,7 +43,7 @@
 {{--                        @include('orders.sections.order-detail')--}}
 {{--                    @endif--}}
 
-                     @include('manager.survey-forms.sections.one-choice')
+                     @include('manager.survey-forms.sections.many-choice')
                 </x-blocks.block>
 
                 <div class="row">
@@ -66,6 +66,8 @@
 ])
 @include('manager.survey-forms.scripts.one-answer-script')
 @include('manager.survey-forms.scripts.one-choice-script')
+@include('manager.survey-forms.scripts.many-answer-script')
+@include('manager.survey-forms.scripts.many-choice-script')
 
 @push('scripts')
     <script>
