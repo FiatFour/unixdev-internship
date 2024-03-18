@@ -18,10 +18,11 @@ class SurveyFormController extends Controller
     public function index(Request $request)
     {
         $department = Department::where('manager_id', Auth::user()->id)->first();
+        $surveyForms = SurveyForm::select('*')->paginate(PER_PAGE);
 
         return view('manager.survey-forms.index', [
             'department' => $department,
-
+            'lists' => $surveyForms,
         ]);
     }
 
@@ -41,6 +42,8 @@ class SurveyFormController extends Controller
 
     public function store(Request $request)
     {
+//        dd($request->all());
+
         $validator = Validator::make($request->all(), [
             'surveyName' => [
                 'required', 'string', 'max:255',
@@ -61,34 +64,12 @@ class SurveyFormController extends Controller
         $surveyForm->manager_id = Auth::user()->id;
         $surveyForm->save();
 
-//        foreach ($request->oneChoices as $index => $oneChoice) {
-//
-//            $questionOneChoice = new Question();
-//            $questionOneChoice->survey_form_id = $surveyForm->id;
-//            $questionOneChoice->name = $oneChoice['name'];
-//            $questionOneChoice->is_order_by = $oneChoice['isOrderBy'];
-//            $questionOneChoice->type = SurveyFormEnum::ONE_CHOICES;
-//            $questionOneChoice->save();
-//
-//            foreach ($request->oneChoiceQuestions as $oneChoiceQuestionIndex => $oneChoiceQuestionValue) {
-//                dd($oneChoiceQuestionValue);
-//                    if ($oneChoiceQuestionValue['oneChoiceIndex'] = $index) {
-//                        $answerOneChoice = new Answer();
-//                        $answerOneChoice->name = $oneChoiceQuestionValue['name'];
-//                        $answerOneChoice->score = $oneChoiceQuestionValue['score'];
-//                        $answerOneChoice->question_id = $questionOneChoice->id;
-//                        $answerOneChoice->save();
-//                    }
-//            }
-//        }
-
         foreach ($request->oneChoices as $index => $oneChoice) {
-
             $questionOneChoice = new Question();
             $questionOneChoice->survey_form_id = $surveyForm->id;
             $questionOneChoice->name = $oneChoice['name'];
             $questionOneChoice->is_order_by = $oneChoice['isOrderBy'];
-            $questionOneChoice->type = SurveyFormEnum::MANY_CHOICES;
+            $questionOneChoice->type = SurveyFormEnum::ONE_CHOICE;
             $questionOneChoice->save();
 
             foreach ($request->oneChoiceQuestions as $oneChoiceQuestionIndex => $oneChoiceQuestionValue) {
@@ -105,12 +86,11 @@ class SurveyFormController extends Controller
 
 
         foreach ($request->manyChoices as $index => $manyChoice) {
-
             $questionManyChoice = new Question();
             $questionManyChoice->survey_form_id = $surveyForm->id;
             $questionManyChoice->name = $manyChoice['name'];
             $questionManyChoice->is_order_by = $manyChoice['isOrderBy'];
-            $questionManyChoice->type = SurveyFormEnum::MANY_CHOICES;
+            $questionManyChoice->type = SurveyFormEnum::MANY_CHOICE;
             $questionManyChoice->save();
 
             foreach ($request->manyChoiceQuestions as $manyChoiceQuestionIndex => $manyChoiceQuestionValue) {
@@ -124,9 +104,16 @@ class SurveyFormController extends Controller
             }
         }
 
+        foreach ($request->textChoices as $index => $textChoice) {
+            $questionTextChoice = new Question();
+            $questionTextChoice->survey_form_id = $surveyForm->id;
+            $questionTextChoice->name = $textChoice['name'];
+            $questionTextChoice->is_order_by = NULL;
+            $questionTextChoice->type = SurveyFormEnum::TEXT_CHOICE;
+            $questionTextChoice->save();
+        }
+
         $redirect_route = route('manager.survey-forms.index');
         return $this->responseValidateSuccess($redirect_route);
-
-        dd('sucess');
     }
 }

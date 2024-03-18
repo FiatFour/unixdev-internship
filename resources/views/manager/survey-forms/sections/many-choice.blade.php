@@ -11,7 +11,7 @@
         <table class="table table-striped">
             <thead class="bg-body-dark">
                 <th style="width: 2px;">#</th>
-                <th style="width: 15%;">คำถาม</th>
+                <th style="width: 80%;" class="text-center">{{__('survey_forms.question')}}</th>
                 <th class="sticky-col text-center">{{ __('manage.tools') }}</th>
             </thead>
 
@@ -39,13 +39,6 @@
                         </div>
                     </div>
                 </td>
-                <input type="hidden" v-bind:name="'manyChoices['+ index+ '][id]'" v-bind:value="item.id">
-{{--                <input type="hidden" v-bind:name="'order_detail['+ index+ '][order_id]'" id="order_id"--}}
-{{--                       v-bind:value="item.order_id">--}}
-{{--                <input type="hidden" v-bind:name="'order_detail['+ index+ '][product_id]'" id="product_id"--}}
-{{--                       v-bind:value="item.product_id">--}}
-{{--                <input type="hidden" v-bind:name="'order_detail['+ index+ '][price]'" id="price"--}}
-{{--                       v-bind:value="item.price">--}}
 
                 <div v-for="(item, index) in manyChoices">
                     <input type="hidden" v-bind:name="'manyChoices['+ index+ '][id]'"
@@ -54,16 +47,6 @@
                     <input type="hidden" v-bind:name="'manyChoices['+ index+ '][isOrderBy]'" v-bind:value="item.isOrderBy">
                 </div>
 
-{{--                <div v-for="(item, index) in modalManyChoices">--}}
-{{--                    <input type="hidden" v-bind:name="'manyChoiceQuestions[' + index +'][' + item.manyChoiceIndex +'][id]'"--}}
-{{--                           v-bind:value="item.id">--}}
-{{--                    <input type="hidden" v-bind:name="'manyChoiceQuestions[' + index +'][' + item.manyChoiceIndex +'][name]'"--}}
-{{--                           v-bind:value="item.name">--}}
-{{--                    <input type="hidden" v-bind:name="'manyChoiceQuestions[' + index +'][' + item.manyChoiceIndex +'][score]'"--}}
-{{--                           v-bind:value="item.score">--}}
-{{--                    <input type="hidden" v-bind:name="'manyChoiceQuestions[' + index +'][' + item.manyChoiceIndex +'][manyChoiceIndex]'"--}}
-{{--                           v-bind:value="item.manyChoiceIndex">--}}
-{{--                </div>--}}
                 <div v-for="(item, index) in modalManyChoices">
                     <input type="hidden" v-bind:name="'manyChoiceQuestions[' + index +'][id]'"
                            v-bind:value="item.id">

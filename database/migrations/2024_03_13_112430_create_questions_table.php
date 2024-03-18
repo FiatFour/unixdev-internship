@@ -17,7 +17,7 @@ return new class extends Migration
 
             $table->string('name');
             $table->string('type');
-            $table->boolean('is_order_by');
+            $table->boolean('is_order_by')->nullable();
 
             $table->foreign('survey_form_id')->references('id')->on('survey_forms')->cascadeOnDelete();
         });

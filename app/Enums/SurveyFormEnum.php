@@ -3,7 +3,7 @@ namespace App\Enums;
 
 abstract class SurveyFormEnum
 {
-    const ONE_CHOICES = '1 ตัวเลือก';
-    const MANY_CHOICES = 'หลายตัวเลือก';
-    const TEXT = 'ข้อความ';
+    const ONE_CHOICE = 'ONE_CHOICE';
+    const MANY_CHOICE = 'MANY_CHOICE';
+    const TEXT_CHOICE = 'TEXT_CHOICE';
 }

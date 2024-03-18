@@ -5,7 +5,7 @@
             data: {
                 modalOneChoices: [],
                 oneChoices: [],
-                editManyIndex: null,
+                editOneChoiceIndex: null,
                 mode: null,
             },
             watch: {},
@@ -48,7 +48,7 @@
                     this.setOneChoiceIndex(index);
                     this.loadOneChoiceModalData(index);
                     this.mode = 'edit';
-                    console.log(this.editManyIndex);
+                    console.log(this.editOneChoiceIndex);
                     this.openModalOneChoice();
                 },
                 clearOneChoiceModalData: function () {
@@ -78,6 +78,7 @@
                 saveOneChoiceModal() {
                     var _modalOneChoices = [...this.modalOneChoices];
                     var oneChoices = this.getOneChoiceDataFromModal();
+
                     // validate name empty
                     var validate_data = _modalOneChoices.filter((item) => {
                         return (item.name == "" || item.name == null) || (parseInt(item.score) < 0);
@@ -87,16 +88,16 @@
                         return false;
                     }
                     if (this.mode == 'edit') {
-                        this.saveOneChoiceEdit(oneChoices, this.editManyIndex);
+                        this.saveOneChoiceEdit(oneChoices, this.editOneChoiceIndex);
                     } else {
                         this.saveOneChoiceAdd(oneChoices);
                     }
                     var cloneAllAnswer = [...this.modalOneChoices]; //clone in js [...array]
-                    cloneAllAnswer = cloneAllAnswer.filter(obj => obj.oneChoiceIndex !== this.editManyIndex);
+                    cloneAllAnswer = cloneAllAnswer.filter(obj => obj.oneChoiceIndex !== this.editOneChoiceIndex);
                     var returnOneAnswer = addOneAnswerVue.getOneAnswer();
                     this.modalOneChoices = cloneAllAnswer.concat(returnOneAnswer);
 
-                    this.editManyIndex = null;
+                    this.editOneChoiceIndex = null;
                     this.displayOneChoice();
                     this.hideOneChoiceModal();
                 },
@@ -115,10 +116,10 @@
                     };
                 },
                 setOneChoiceIndex: function (index) {
-                    this.editManyIndex = index;
+                    this.editOneChoiceIndex = index;
                 },
                 getOneChoiceIndex: function () {
-                    return this.editManyIndex;
+                    return this.editOneChoiceIndex;
                 },
                 number_format(number) {
                     return number_format(number);

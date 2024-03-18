@@ -14,40 +14,33 @@
         <div class="p-3 bg-body-extra-light rounded push">
             <form id="save-form">
 
-                    <div class="row mb-4">
-                        <div class="col-13">
-                            <x-forms.input id="surveyName" :value="$surveyForm->name"
-                                           :label="__('survey_forms.name')"
-                                           :optionals="['placeholder' => __('survey_forms.input_name')]"/>
-                        </div>
-{{--                        <x-forms.input-new-line id="oneChoiceTitle" :value="null"--}}
-{{--                                                :name="'oneChoiceTitle'"--}}
-{{--                                                :label="__('survey_forms.one_choice')"--}}
-{{--                                                :optionals="['required' => true]"/>--}}
+                <div class="row mb-4">
+                    <div class="col-13">
+{{--                        <x-forms.input id="surveyName" :value="$surveyForm->name"--}}
+{{--                                       :label="__('survey_forms.name')"--}}
+{{--                                       :optionals="['placeholder' => __('survey_forms.input_name')]"/>--}}
+
+                        <x-forms.input-new-line id="surveyName" :value="$surveyForm->name"
+                                                :name="'surveyName'"
+                                                :label="__('survey_forms.name')"
+                                                :optionals="['required' => true, 'placeholder' => __('survey_forms.input_name')]"/>
                     </div>
+                </div>
 
                 <x-blocks.block :title="__('')">
-{{--                    @if (isset($view))--}}
-{{--                        @include('orders.sections.views.order-detail')--}}
-{{--                    @else--}}
-{{--                        @include('orders.sections.order-detail')--}}
-{{--                    @endif--}}
-
-                     @include('manager.survey-forms.sections.one-choice')
+                    @include('manager.survey-forms.sections.one-choice')
                 </x-blocks.block>
 
                 <x-blocks.block :title="__('')">
-{{--                    @if (isset($view))--}}
-{{--                        @include('orders.sections.views.order-detail')--}}
-{{--                    @else--}}
-{{--                        @include('orders.sections.order-detail')--}}
-{{--                    @endif--}}
+                    @include('manager.survey-forms.sections.many-choice')
+                </x-blocks.block>
 
-                     @include('manager.survey-forms.sections.many-choice')
+                <x-blocks.block :title="__('')">
+                    @include('manager.survey-forms.sections.text-choice')
                 </x-blocks.block>
 
                 <div class="row">
-{{--                    <input type="hidden" name="id" id="id" value="{{ $department->id }}">--}}
+                    {{--                    <input type="hidden" name="id" id="id" value="{{ $department->id }}">--}}
                     <x-forms.submit-group
                         :optionals="['url' => 'manager.survey-forms.index', 'view' => empty($view) ? null : $view]"/>
                 </div>
@@ -56,8 +49,6 @@
     </section>
 @endsection
 
-
-{{--@include('manager.survey-forms.scripts.rental-line-script')--}}
 
 @include('components.select2-default')
 @include('components.sweetalert')
@@ -68,6 +59,8 @@
 @include('manager.survey-forms.scripts.one-choice-script')
 @include('manager.survey-forms.scripts.many-answer-script')
 @include('manager.survey-forms.scripts.many-choice-script')
+@include('manager.survey-forms.scripts.text-choice-script')
+
 
 @push('scripts')
     <script>

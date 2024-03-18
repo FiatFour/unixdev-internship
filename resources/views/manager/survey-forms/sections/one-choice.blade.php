@@ -10,9 +10,9 @@
 
         <table class="table table-striped">
             <thead class="bg-body-dark">
-                <th style="width: 2px;">#</th>
-                <th style="width: 15%;">คำถาม</th>
-                <th class="sticky-col text-center">{{ __('manage.tools') }}</th>
+            <th style="width: 2px;">#</th>
+            <th style="width: 80%;" class="text-center">{{__('survey_forms.question')}}</th>
+            <th class="sticky-col text-center">{{ __('manage.tools') }}</th>
             </thead>
 
             <tbody v-if="oneChoices.length > 0">
@@ -39,31 +39,15 @@
                         </div>
                     </div>
                 </td>
-                <input type="hidden" v-bind:name="'oneChoices['+ index+ '][id]'" v-bind:value="item.id">
-{{--                <input type="hidden" v-bind:name="'order_detail['+ index+ '][order_id]'" id="order_id"--}}
-{{--                       v-bind:value="item.order_id">--}}
-{{--                <input type="hidden" v-bind:name="'order_detail['+ index+ '][product_id]'" id="product_id"--}}
-{{--                       v-bind:value="item.product_id">--}}
-{{--                <input type="hidden" v-bind:name="'order_detail['+ index+ '][price]'" id="price"--}}
-{{--                       v-bind:value="item.price">--}}
 
                 <div v-for="(item, index) in oneChoices">
                     <input type="hidden" v-bind:name="'oneChoices['+ index+ '][id]'"
                            v-bind:value="item.id">
                     <input type="hidden" v-bind:name="'oneChoices['+ index+ '][name]'" v-bind:value="item.name">
-                    <input type="hidden" v-bind:name="'oneChoices['+ index+ '][isOrderBy]'" v-bind:value="item.isOrderBy">
+                    <input type="hidden" v-bind:name="'oneChoices['+ index+ '][isOrderBy]'"
+                           v-bind:value="item.isOrderBy">
                 </div>
 
-{{--                <div v-for="(item, index) in modalOneChoices">--}}
-{{--                    <input type="hidden" v-bind:name="'oneChoiceQuestions[' + index +'][' + item.oneChoiceIndex +'][id]'"--}}
-{{--                           v-bind:value="item.id">--}}
-{{--                    <input type="hidden" v-bind:name="'oneChoiceQuestions[' + index +'][' + item.oneChoiceIndex +'][name]'"--}}
-{{--                           v-bind:value="item.name">--}}
-{{--                    <input type="hidden" v-bind:name="'oneChoiceQuestions[' + index +'][' + item.oneChoiceIndex +'][score]'"--}}
-{{--                           v-bind:value="item.score">--}}
-{{--                    <input type="hidden" v-bind:name="'oneChoiceQuestions[' + index +'][' + item.oneChoiceIndex +'][oneChoiceIndex]'"--}}
-{{--                           v-bind:value="item.oneChoiceIndex">--}}
-{{--                </div>--}}
                 <div v-for="(item, index) in modalOneChoices">
                     <input type="hidden" v-bind:name="'oneChoiceQuestions[' + index +'][id]'"
                            v-bind:value="item.id">
