@@ -32,6 +32,7 @@
 
     <!-- Stylesheets -->
     <!-- Page JS Plugins CSS -->
+    <link rel="stylesheet" id="css-main" href="{{ asset('css/dashmix/main.css') }}">
     <link rel="stylesheet"
           href="{{ asset('assets/js/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') }}">
     <link rel="stylesheet"

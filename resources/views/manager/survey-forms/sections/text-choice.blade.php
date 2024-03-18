@@ -1,5 +1,5 @@
 <div id="text-choices" v-cloak data-detail-uri="" data-title="">
-    <div class="table-wrap">
+    <div class="table">
         <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
             <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">{{ __('survey_forms.text_choice') }}</h1>
             <a href="#" type="button" class="btn btn-alt-primary my-2" onclick="openTextChoiceModal()"
