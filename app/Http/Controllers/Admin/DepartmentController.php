@@ -45,22 +45,11 @@ class DepartmentController extends Controller
         $department = new Department();
         $page_title = __('lang.add') . __('departments.page_title');
 
-//        $employees = User::select('users.id', 'users.name', 'departments.manager_id')
-//            ->leftJoin('departments', 'users.id', '!=', 'departments.manager_id')
-//            ->where([
-//                ['users.role', '!=', RoleEnum::ADMIN],
-//            ])
-//            ->get();
         $employees = User::select('users.id', 'users.name')
-            ->where('role', '!=', RoleEnum::ADMIN)->get();
+            ->where('role', RoleEnum::EMPLOYEE)->get();
 
-        $managers = User::select('users.id', 'users.name', 'departments.manager_id')
-            ->leftJoin('departments', 'users.id', '=', 'departments.manager_id')
-            ->where([
-                ['users.role', '=', RoleEnum::MANAGER],
-//                ['departments.manager_id', '!=', 'users.id']
-            ])
-            ->get();
+        $managers = User::select('users.id', 'users.name')
+            ->where('role', RoleEnum::MANAGER)->get();
 
         $employeeId = [];
         return view(
@@ -84,24 +73,14 @@ class DepartmentController extends Controller
             ],
             'managerId' => [
                 'required',
-                Rule::unique('departments', 'manager_id')->ignore($request->id),
             ],
-//            'employeeId' => [
-//                'required',
-//                'array',
-//                'min:1',
-//            ],
         ], [], [
             'name' => __('departments.name'),
             'managerId' => __('departments.manager'),
-//            'employeeId' => __('departments.select_employee'),
         ]);
 
         if ($validator->fails()) {
-            return response()->json([
-                'success' => false,
-                'errors' => $validator->errors(),
-            ]);
+            return $this->responseValidateAllFailed($validator);
         }
 
         $department = Department::firstOrNew(['id' => $request->id]);
@@ -168,12 +147,10 @@ class DepartmentController extends Controller
         $roles = $this->getRole();
 
         $employees = User::select('users.id', 'users.name')
-            ->where('role', '!=', RoleEnum::ADMIN)->get();
+            ->where('role', RoleEnum::EMPLOYEE)->get();
 
-        $managers = User::select('users.id', 'users.name', 'departments.manager_id')
-            ->leftJoin('departments', 'users.id', '!=', 'departments.manager_id')
-            ->where('users.role', RoleEnum::MANAGER)
-            ->get();
+        $managers = User::select('users.id', 'users.name')
+            ->where('role', RoleEnum::MANAGER)->get();
 
         $employeeId = $this->getEmployeeId($department->id);
         $page_title = __('lang.view') . __('departments.page_title');
@@ -238,6 +215,4 @@ class DepartmentController extends Controller
         $department->delete();
         return $this->responseDeletedSuccess('Department', 'admin.departments.index');
     }
-
-
 }

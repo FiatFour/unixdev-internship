@@ -56,11 +56,11 @@
                             <input type="number" class="form-control"
                                    :id="'score-' + modalOneChoiceIndex  + '-' + modalOneChoice.OneChoiceIndex"
                                    v-bind:name="'modalOneChoices[' + modalOneChoiceIndex +'][' + modalOneChoice.oneChoiceIndex +'][score]'"
-                                   v-model="modalOneChoice.score"/>
+                                   v-model="modalOneChoice.score" placeholder="0"/>
                         </td>
                         <td>
                             <a class="btn btn-outline-light btn-mini"
-                               v-on:click="removeOneChioceLine(oneChoiceIndex)"><i
+                               v-on:click="removeOneChoiceLine(modalOneChoiceIndex)"><i
                                     class="fa-solid fa-trash-can" style="color:red"></i></a>
                         </td>
 
@@ -87,3 +87,5 @@
             {{ __('lang.save') }}</button>
     </x-slot>
 </x-modal>
+
+

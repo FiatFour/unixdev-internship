@@ -20,25 +20,22 @@
                 },
                 pushOneChoiceLine: function(name, score, oneChoiceIndex){
                     let data = {
-                        // surveyLineId: surveyLineId,
                         name: name,
                         score: score,
                         oneChoiceIndex: oneChoiceIndex,
                     }
-                    console.log(this.modalOneChoices);
                     this.modalOneChoices.push(data);
-                    // $(".add-one-choice-empty").hide();
+                },
+                removeOneChoiceLine: function (index) {
+                    this.modalOneChoices.splice(index, 1);
                 },
                 addOneAnswerLine: function() {
                     var oneChoiceIndex = addOneChoiceVue.getOneChoiceIndex();
-                    console.log(oneChoiceIndex);
-                    this.pushOneChoiceLine(null, 0, oneChoiceIndex);
+                    this.pushOneChoiceLine(null, null, oneChoiceIndex);
                 },
                 addOneChoice: function (){
                     this.modalOneChoices = [];
                     $('#one-choice-modal').modal('show');
-                    // this.OneChoiceIndex = this.oneChoices.length; // Update OneChoiceIndex here
-                    // console.log(this.OneChoiceIndex);
                 },
             },
             props: ['title'],
@@ -47,7 +44,6 @@
         addOneAnswerVue.displayOneAnswer();
 
         function addOneChoiceLine() {
-            console.log('test');
             addOneAnswerVue.addOneAnswerLine();
         }
         function openOneChoiceModal() {
@@ -55,3 +51,5 @@
         }
     </script>
 @endpush
+
+

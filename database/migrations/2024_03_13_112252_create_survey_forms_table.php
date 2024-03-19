@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('survey_forms', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('manager_id')->nullable();
+            $table->uuid('department_id');
+            $table->uuid('created_by_id')->nullable();
             $table->string('name');
             $table->timestamps();
 
-            $table->foreign('manager_id')->references('id')->on('users')->nullOnDelete();
+            $table->foreign('created_by_id')->references('id')->on('users')->nullOnDelete();
+            $table->foreign('department_id')->references('id')->on('departments')->cascadeOnDelete();
         });
     }
 

@@ -6,7 +6,7 @@
         <h5>
 
         </h5>
-        <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3" style="border: solid 1px red;">{{ __('manage.manage') . __('survey_forms.page_title') }} : <span style="color: dodgerblue">{{ $department->name != null ? $department->name : ' '  }}</span></h1>
+        <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3" style="border: solid 1px red;">{{ __('manage.manage') . __('survey_forms.page_title') }}</h1>
         <div class="p-3 bg-body-extra-light rounded push">
             <form action="" method="GET">
                 {{--                <div class="row mb-4">--}}
@@ -44,7 +44,7 @@
                     <table class="table table-striped table-borderless table-vcenter">
                         <thead>
                         <tr class="bg-body-dark">
-                            <th class="d-none d-sm-table-cell text-center" ">#</th>
+                            <th class="d-none d-sm-table-cell text-center">#</th>
                             <th>{{ __('survey_forms.name') }}</th>
                             <th>{{ __('lang.created_at') }}</th>
                         </tr>

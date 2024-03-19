@@ -24,14 +24,12 @@ class UserController extends Controller
         $role = $request->role;
         $lists = User::select('*')->search($request->s, $request)->paginate(PER_PAGE); // PER_PAGE
         $roles = $this->getRole();
-
         return view('admin.users.index', [
             'lists' => $lists,
             'roles' => $roles,
             's' => $s,
             'name' => $name,
             'role' => $role,
-
         ]);
     }
 
@@ -43,7 +41,7 @@ class UserController extends Controller
         $user = new User();
         $page_title = __('lang.add') . __('users.page_title');
         $roles = $this->getRole();
-
+        $departments = Department::select('id', 'name')->get();
 
         return view(
             'admin.users.form',
@@ -51,6 +49,7 @@ class UserController extends Controller
                 'user' => $user,
                 'page_title' => $page_title,
                 'roles' => $roles,
+                'departments' => $departments,
             ]
         );
     }
@@ -87,19 +86,22 @@ class UserController extends Controller
             'password' => [
                 'required', 'string', 'min:8',
             ],
+            'departmentId' => [
+                'required',
+            ],
+            'role' => [
+                'required',
+            ],
         ], [], [
             'password' => __('users.password'),
             'name' => __('users.name'),
             'email' => __('users.email'),
-//            'departmentId' => __('users.department'),
+            'departmentId' => __('departments.name'),
             'role' => __('users.role'),
         ]);
 
         if ($validator->fails()) {
-            return response()->json([
-                'success' => false,
-                'errors' => $validator->errors(),
-            ]);
+            return $this->responseValidateAllFailed($validator);
         }
 
         $user = User::firstOrNew(['id' => $request->id]);
@@ -110,7 +112,7 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->role = $request->role;
-//        $user->departmentId = $request->departmentId;
+        $user->departmentId = $request->departmentId;
         $user->password = Hash::make($request->password);
         $user->save();
 

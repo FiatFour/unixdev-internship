@@ -17,11 +17,12 @@ class SurveyFormController extends Controller
 {
     public function index(Request $request)
     {
-        $department = Department::where('manager_id', Auth::user()->id)->first();
+//        $department = Department::where('manager_id', Auth::user()->id)->first();
         $surveyForms = SurveyForm::select('*')->paginate(PER_PAGE);
 
+
         return view('manager.survey-forms.index', [
-            'department' => $department,
+//            'department' => $department,
             'lists' => $surveyForms,
         ]);
     }
@@ -30,26 +31,29 @@ class SurveyFormController extends Controller
     {
         $page_title = __('lang.add') . __('survey_forms.page_title');
         $surveyForm = new SurveyForm();
-
+        $departments = Department::select('id', 'name')->where('manager_id', Auth::user()->id)->get();
         return view(
             'manager.survey-forms.form',
             [
                 'page_title' => $page_title,
                 'surveyForm' => $surveyForm,
+                'departments' => $departments,
             ]
         );
     }
 
     public function store(Request $request)
     {
-//        dd($request->all());
-
         $validator = Validator::make($request->all(), [
             'surveyName' => [
                 'required', 'string', 'max:255',
             ],
+            'departmentId' => [
+                'required'
+            ],
         ], [], [
-            'name' => __('survey_forms.input_survey_name'),
+            'surveyName' => __('survey_forms.name'),
+            'departmentId' => __('departments.name'),
         ]);
 
         if ($validator->fails()) {
@@ -61,7 +65,8 @@ class SurveyFormController extends Controller
 
         $surveyForm = new SurveyForm();
         $surveyForm->name = $request->surveyName;
-        $surveyForm->manager_id = Auth::user()->id;
+        $surveyForm->department_id = $request->departmentId;
+        $surveyForm->created_by_id = Auth::user()->id;
         $surveyForm->save();
 
         foreach ($request->oneChoices as $index => $oneChoice) {

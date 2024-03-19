@@ -28,7 +28,6 @@
                     this.setTextChoiceIndex(index);
                     this.loadTextChoiceModalData(index);
                     this.mode = 'edit';
-                    console.log(this.editTextChoiceIndex);
                     this.openModalTextChoice();
                 },
                 clearTextChoiceModalData: function () {
@@ -45,6 +44,11 @@
                 },
                 saveTextChoiceModal() {
                     var textChoices = this.getTextChoiceDataFromModal();
+
+                    if(textChoices.name == ""){
+                        warningAlert('กรุณากรอกข้อมูลให้ถูกต้อง/ครบถ้วน');
+                        return 0;
+                    }
                     if (this.mode == 'edit') {
                         this.saveTextChoiceEdit(textChoices, this.editTextChoiceIndex);
                     } else {
@@ -73,42 +77,21 @@
                 getTextChoiceIndex: function () {
                     return this.editTextChoiceIndex;
                 },
-                number_format(number) {
-                    return number_format(number);
+                removeTextChoice: function (index) {
+                    this.textChoices.splice(index, 1);
                 },
             },
             props: ['title'],
         });
 
         addTextChoiceVue.displayTextChoice();
-        // function addTextChoiceLine() {
-        //     console.log('test');
-        //     addTextChoiceVue.addTextChoiceLine();
-        // }
 
         function saveTextChoiceModal() {
             addTextChoiceVue.saveTextChoiceModal();
         }
 
-
-        // function saveCar() {
-        //     addRentalVue.saveCar();
-        // }
-        //
-        // function saveProductAdditional() {
-        //     addRentalVue.saveProductAdditional();
-        // }
-        //
-        // function addExtraProduct() {
-        //     addRentalVue.addExtraProduct();
-        // }
-
         function openTextChoiceModal() {
             addTextChoiceVue.addTextChoice();
         }
-
-        // function openExtraModal() {
-        //     addRentalVue.addExtra();
-        // }
     </script>
 @endpush

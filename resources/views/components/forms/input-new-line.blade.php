@@ -9,6 +9,7 @@
 </label>
 <input type="{{ $type }}" class="form-control {{ $input_class }}" id="{{ $id }}"
     name="{{ $id }}" placeholder="{{ $placeholder }}" maxlength="{{ $maxlength }}" oninput="{{ $oninput }}" min="{{$min}}"
-    {{ $required ? 'required' : '' }} value="{{ $value }}" 
+    {{ $required ? 'required' : '' }} value="{{ $value }}"
     {{ $readonly ? 'readonly' : '' }}
     >
+<p></p>

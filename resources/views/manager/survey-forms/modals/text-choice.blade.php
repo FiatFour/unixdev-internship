@@ -1,6 +1,6 @@
 <x-modal :id="'text-choice'" :title="__('survey_forms.text_choice')">
     <div class="col-12">
-        <x-forms.input-new-line id="textChoiceTitle" :value="null"
+        <x-forms.textarea-new-line id="textChoiceTitle" :value="null"
                                 :name="'textChoiceTitle'"
                                 :label="__('survey_forms.text_choice_label')"
                                 :optionals="['required' => true]"/>

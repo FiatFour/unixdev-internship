@@ -56,11 +56,11 @@
                             <input type="number" class="form-control"
                                    :id="'score-' + modalManyChoiceIndex  + '-' + modalManyChoice.manyChoiceIndex"
                                    v-bind:name="'modalManyChoices[' + modalManyChoiceIndex +'][' + modalManyChoice.manyChoiceIndex +'][score]'"
-                                   v-model="modalManyChoice.score"/>
+                                   v-model="modalManyChoice.score" placeholder="0"/>
                         </td>
                         <td>
                             <a class="btn btn-outline-light btn-mini"
-                               v-on:click="removeManyChioceLine(manyChoiceIndex)"><i
+                               v-on:click="removeManyChoiceLine(modalManyChoiceIndex)"><i
                                     class="fa-solid fa-trash-can" style="color:red"></i></a>
                         </td>
 

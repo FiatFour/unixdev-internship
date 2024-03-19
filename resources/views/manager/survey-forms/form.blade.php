@@ -15,16 +15,16 @@
             <form id="save-form">
 
                 <div class="row mb-4">
-                    <div class="col-13">
-{{--                        <x-forms.input id="surveyName" :value="$surveyForm->name"--}}
-{{--                                       :label="__('survey_forms.name')"--}}
-{{--                                       :optionals="['placeholder' => __('survey_forms.input_name')]"/>--}}
-
+                    <div class="col-6">
                         <x-forms.input-new-line id="surveyName" :value="$surveyForm->name"
                                                 :name="'surveyName'"
                                                 :label="__('survey_forms.name')"
                                                 :optionals="['required' => true, 'placeholder' => __('survey_forms.input_name')]"/>
                     </div>
+                        <div class="col-6">
+                            <x-forms.select-option id="departmentId" :value="null" :list="$departments"
+                                                   :label="__('departments.name')"/>
+                        </div>
                 </div>
 
                 <x-blocks.block :title="__('')">

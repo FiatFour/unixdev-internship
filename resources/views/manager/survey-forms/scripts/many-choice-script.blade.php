@@ -31,9 +31,6 @@
                 },
                 removeManyChoiceLine: function (index) {
                     this.modalManyChoices.splice(index, 1);
-                    // if(surveyLineId != null && surveyLineId != ""){
-                    //     this.pending_delete_extra_product_ids.push(surveyLineId);
-                    // }
                 },
                 addManyChoice: function () {
                     this.setManyChoiceIndex(this.setLengthManyChoice());
@@ -48,7 +45,6 @@
                     this.setManyChoiceIndex(index);
                     this.loadManyChoiceModalData(index);
                     this.mode = 'edit';
-                    console.log(this.editManyChoiceIndex);
                     this.openModalManyChoice();
                 },
                 clearManyChoiceModalData: function () {
@@ -67,8 +63,8 @@
                     var _modalManyChoices = [...this.modalManyChoices];
                     var checkId = manyChoiceIndex;
 
-                    let cloneManyAnswer = _modalManyChoices.filter(obj => obj.manyChoiceIndex == checkId);
-                    addManyAnswerVue.setManyAnswer(cloneManyAnswer);
+                    let clmanyManyAnswer = _modalManyChoices.filter(obj => obj.manyChoiceIndex == checkId);
+                    addManyAnswerVue.setManyAnswer(clmanyManyAnswer);
 
                     $('#many-choice-modal').modal('show');
                 },
@@ -76,29 +72,43 @@
                     $("#many-choice-modal").modal("hide");
                 },
                 saveManyChoiceModal() {
-                    var _modalManyChoices = [...this.modalManyChoices];
                     var manyChoices = this.getManyChoiceDataFromModal();
-                    // validate name empty
-                    var validate_data = _modalManyChoices.filter((item) => {
-                        return (item.name == "" || item.name == null) || (parseInt(item.score) < 0);
-                    });
-                    if (validate_data.length > 0) {
-                        warningAlert('กรุณากรอกข้อมูลให้ถูกต้อง/ครบถ้วน');
-                        return false;
-                    }
-                    if (this.mode == 'edit') {
-                        this.saveManyChoiceEdit(manyChoices, this.editManyChoiceIndex);
-                    } else {
-                        this.saveManyChoiceAdd(manyChoices);
-                    }
+
                     var cloneAllAnswer = [...this.modalManyChoices]; //clone in js [...array]
                     cloneAllAnswer = cloneAllAnswer.filter(obj => obj.manyChoiceIndex !== this.editManyChoiceIndex);
                     var returnManyAnswer = addManyAnswerVue.getManyAnswer();
                     this.modalManyChoices = cloneAllAnswer.concat(returnManyAnswer);
 
-                    this.editManyChoiceIndex = null;
-                    this.displayManyChoice();
-                    this.hideManyChoiceModal();
+                    let validate_data = this.modalManyChoices.filter(item => item.manyChoiceIndex == this.editManyChoiceIndex);
+                    let error = 0;
+
+                    if (manyChoices.name == "") {
+                        warningAlert('กรุณากรอกชื่อ');
+                        return false;
+                    }
+                    if (validate_data.length <= 0) {
+                        warningAlert('ไม่มีรายการ');
+                        return false;
+                    } else {
+                        validate_data.forEach((item) => {
+                            if ((item.score == "" || item.name == null) || (item.score == "" || (parseInt(item.score) <= 0))) {
+                                error++;
+                            }
+                        });
+                    }
+
+                    if (error > 0) {
+                        warningAlert('กรุณากรอกข้อมูลให้ถูกต้อง/ครบถ้วน');
+                    } else {
+                        if (this.mode == 'edit') {
+                            this.saveManyChoiceEdit(manyChoices, this.editManyChoiceIndex);
+                        } else {
+                            this.saveManyChoiceAdd(manyChoices);
+                        }
+                        this.editManyChoiceIndex = null;
+                        this.displayManyChoice();
+                        this.hideManyChoiceModal();
+                    }
                 },
                 saveManyChoiceAdd: function (manyChoices) {
                     this.manyChoices.push(manyChoices);
@@ -120,42 +130,19 @@
                 getManyChoiceIndex: function () {
                     return this.editManyChoiceIndex;
                 },
-                number_format(number) {
-                    return number_format(number);
-                },
             },
             props: ['title'],
         });
 
         addManyChoiceVue.displayManyChoice();
-        // function addManyChoiceLine() {
-        //     console.log('test');
-        //     addManyChoiceVue.addManyChoiceLine();
-        // }
 
         function saveManyChoiceModal() {
             addManyChoiceVue.saveManyChoiceModal();
         }
 
-
-        // function saveCar() {
-        //     addRentalVue.saveCar();
-        // }
-        //
-        // function saveProductAdditional() {
-        //     addRentalVue.saveProductAdditional();
-        // }
-        //
-        // function addExtraProduct() {
-        //     addRentalVue.addExtraProduct();
-        // }
-
         function openManyChoiceModal() {
             addManyChoiceVue.addManyChoice();
         }
 
-        // function openExtraModal() {
-        //     addRentalVue.addExtra();
-        // }
     </script>
 @endpush

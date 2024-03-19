@@ -72,7 +72,7 @@
                     };
                 },
                 validateDataObject: function (textChoices) {
-                    if (textChoices.name) {
+                    if (textChoices.name != "") {
                         return true;
                     } else {
                         return false;
@@ -103,3 +103,5 @@
 
     </script>
 @endpush
+
+
