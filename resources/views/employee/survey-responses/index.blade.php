@@ -1,4 +1,4 @@
-@extends('manager.layouts.app')
+@extends('employee.layouts.app')
 
 @section('content')
     <div class="content">
@@ -6,7 +6,7 @@
         <h5>
 
         </h5>
-        <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">{{ __('manage.manage') . __('survey_forms.page_title') }}</h1>
+        <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">{{ __('survey_responses.page_title') }}</h1>
         <div class="p-3 bg-body-extra-light rounded push">
             <form action="" method="GET">
                 @include('components.btns.search')
@@ -16,12 +16,6 @@
 
         <div class="block block-rounded">
             <div class="block-content">
-                <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-                    <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3"></h1>
-                    <a href="{{ route('manager.survey-forms.create') }}" type="button" class="btn btn-alt-primary my-2">
-                        <i class="fa fa-fw fa-plus me-1"></i> {{ __('manage.btn_add') }}
-                    </a>
-                </div>
                 <div class="table-responsive">
                     <table class="table table-striped table-borderless table-vcenter">
                         <thead>
@@ -30,7 +24,7 @@
                             <th>{{ __('survey_forms.name') }}</th>
                             <th>{{ __('departments.name') }}</th>
                             <th>{{ __('lang.created_at') }}</th>
-                            <th>{{ __('lang.tools') }}</th>
+                            <th style="text-align: center">{{ __('lang.tools') }}</th>
                         </tr>
                         </thead>
                         <tbody>

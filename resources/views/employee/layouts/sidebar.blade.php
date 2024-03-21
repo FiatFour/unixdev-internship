@@ -35,9 +35,9 @@
         <div class="content-side">
             <ul class="nav-main">
                 <li class="nav-main-item">
-                    <a class="nav-main-link" href="{{ route('manager.survey-forms.index') }}">
-                        <i class="nav-main-link-icon fa fa-user"></i>
-                        <span class="nav-main-link-name">{{ __('survey_forms.page_title') }}</span>
+                    <a class="nav-main-link" href="{{ route('employee.survey-responses.index') }}">
+                        <i class="nav-main-link-icon fa fa-file-lines"></i>
+                        <span class="nav-main-link-name">{{ __('survey_responses.page_title') }}</span>
                     </a>
                 </li>
             </ul>

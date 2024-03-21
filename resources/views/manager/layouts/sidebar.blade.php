@@ -36,7 +36,7 @@
             <ul class="nav-main">
                 <li class="nav-main-item">
                     <a class="nav-main-link" href="{{ route('manager.survey-forms.index') }}">
-                        <i class="nav-main-link-icon fa fa-user"></i>
+                        <i class="nav-main-link-icon fa fa-file"></i>
                         <span class="nav-main-link-name">{{ __('survey_forms.page_title') }}</span>
                     </a>
                 </li>
