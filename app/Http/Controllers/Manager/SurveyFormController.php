@@ -73,7 +73,11 @@ class SurveyFormController extends Controller
             $questionOneChoice = new Question();
             $questionOneChoice->survey_form_id = $surveyForm->id;
             $questionOneChoice->name = $oneChoice['name'];
-            $questionOneChoice->is_order_by = $oneChoice['isOrderBy'];
+            if($oneChoice['isOrderBy'] == 1){
+                $questionOneChoice->is_order_by = true;
+            }else{
+                $questionOneChoice->is_order_by = false;
+            }
             $questionOneChoice->type = SurveyFormEnum::ONE_CHOICE;
             $questionOneChoice->save();
 
@@ -89,12 +93,15 @@ class SurveyFormController extends Controller
             }
         }
 
-
         foreach ($request->manyChoices as $index => $manyChoice) {
             $questionManyChoice = new Question();
             $questionManyChoice->survey_form_id = $surveyForm->id;
             $questionManyChoice->name = $manyChoice['name'];
-            $questionManyChoice->is_order_by = $manyChoice['isOrderBy'];
+            if($manyChoice['isOrderBy'] == 1){
+                $questionManyChoice->is_order_by = true;
+            }else{
+                $questionManyChoice->is_order_by = false;
+            }
             $questionManyChoice->type = SurveyFormEnum::MANY_CHOICE;
             $questionManyChoice->save();
 

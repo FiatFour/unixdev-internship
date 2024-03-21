@@ -83,9 +83,9 @@ class UserController extends Controller
                 'required', 'string', 'max:255', 'email',
                 Rule::unique('users', 'email')->ignore($request->id),
             ],
-            'password' => [
-                'required', 'string', 'min:8',
-            ],
+//            'password' => [
+//                'required', 'string', 'min:8',
+//            ],
             'departmentId' => [
                 'required',
             ],
@@ -104,6 +104,7 @@ class UserController extends Controller
             return $this->responseValidateAllFailed($validator);
         }
 
+
         $user = User::firstOrNew(['id' => $request->id]);
 //        if($user->created_at = null){
 //            $user->created_at = date('Y-m-d H:i:s');
@@ -112,8 +113,10 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->role = $request->role;
-        $user->departmentId = $request->departmentId;
-        $user->password = Hash::make($request->password);
+        $user->department_id = $request->departmentId;
+        if ($request->password != null) {
+            $user->password = Hash::make($request->password);
+        }
         $user->save();
 
         $redirect_route = route('admin.users.index');
@@ -126,12 +129,14 @@ class UserController extends Controller
         if ($user == null) {
             return redirect()->route('users.index');
         }
+        $departments = Department::select('id', 'name')->get();
 
         $page_title = __('lang.edit') . __('users.page_title');
         return view('admin.users.form',
             [
                 'page_title' => $page_title,
                 'user' => $user,
+                'departments' => $departments,
                 'roles' => $roles
             ]
         );

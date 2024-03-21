@@ -17,6 +17,7 @@ class Controller extends BaseController
             'message' => $validator->getMessageBag()->first()
         ], 422);
     }
+
     function responseValidateAllFailed($validator)
     {
         return response()->json([

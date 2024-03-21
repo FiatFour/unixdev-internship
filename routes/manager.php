@@ -7,5 +7,6 @@ Route::middleware(['auth:web', 'PreventBackHistory', 'is_manager'])->group(funct
     Route::prefix('manager')->name('manager.')->group(function () {
 //    Route::get('users', [EmployeeController::class, 'index']);
         Route::resource('survey-forms', SurveyFormController::class);
+//        Route::get('survey-forms/index', [SurveyFormController::class, 'index'])->name('survey-forms.index');
     });
 });

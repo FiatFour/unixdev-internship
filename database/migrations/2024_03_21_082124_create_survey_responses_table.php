@@ -11,17 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('employee_answers', function (Blueprint $table) {
-            $table->uuid('user_id');
+        Schema::create('survey_responses', function (Blueprint $table) {
+            $table->uuid('employee_id');
             $table->uuid('survey_form_id');
             $table->uuid('question_id');
-            $table->uuid('answer_id');
-            $table->text('text_answer');
+            $table->uuid('answer_id')->nullable();
+            $table->text('text_answer')->nullable();
 
-            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreign('employee_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreign('survey_form_id')->references('id')->on('survey_forms')->cascadeOnDelete();
             $table->foreign('question_id')->references('id')->on('questions')->cascadeOnDelete();
-            $table->foreign('answer_id')->references('id')->on('answers')->cascadeOnDelete();
+            $table->foreign('answer_id')->references('id')->on('answers')->nullOnDelete();
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('employee_answers');
+        Schema::dropIfExists('survey_responses');
     }
 };

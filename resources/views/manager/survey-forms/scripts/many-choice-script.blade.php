@@ -27,7 +27,7 @@
                 },
                 addManyChoiceLine() {
                     var manyChoiceIndex = this.manyChoices.length
-                    this.pushManyChoiceLine(null, 0, manyChoiceIndex);
+                    this.pushManyChoiceLine(null, null, manyChoiceIndex);
                 },
                 removeManyChoiceLine: function (index) {
                     this.modalManyChoices.splice(index, 1);
