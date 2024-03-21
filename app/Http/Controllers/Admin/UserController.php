@@ -86,9 +86,6 @@ class UserController extends Controller
 //            'password' => [
 //                'required', 'string', 'min:8',
 //            ],
-            'departmentId' => [
-                'required',
-            ],
             'role' => [
                 'required',
             ],
@@ -96,7 +93,6 @@ class UserController extends Controller
             'password' => __('users.password'),
             'name' => __('users.name'),
             'email' => __('users.email'),
-            'departmentId' => __('departments.name'),
             'role' => __('users.role'),
         ]);
 
