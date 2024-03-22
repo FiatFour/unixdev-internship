@@ -17,13 +17,23 @@ class SurveyFormController extends Controller
 {
     public function index(Request $request)
     {
-//        $department = Department::where('manager_id', Auth::user()->id)->first();
-        $surveyForms = SurveyForm::select('*')->paginate(PER_PAGE);
+        $s = $request->s;
+        $name = $request->name;
+
+        $lists = SurveyForm::latest('survey_forms.id')
+            ->leftJoin('departments', 'departments.id',
+                'survey_forms.department_id')
+            ->select('survey_forms.*', 'departments.name as department_name')
+            ->search($request->s, $request)
+            ->paginate(PER_PAGE);
+        $departments = Department::select('id', 'name')->where('manager_id', Auth::user()->id)->get();
 
 
         return view('manager.survey-forms.index', [
-//            'department' => $department,
-            'lists' => $surveyForms,
+            'departments' => $departments,
+            'lists' => $lists,
+            's' => $s,
+            'name' => $name,
         ]);
     }
 
@@ -73,9 +83,9 @@ class SurveyFormController extends Controller
             $questionOneChoice = new Question();
             $questionOneChoice->survey_form_id = $surveyForm->id;
             $questionOneChoice->name = $oneChoice['name'];
-            if($oneChoice['isOrderBy'] == 1){
+            if ($oneChoice['isOrderBy'] == 1) {
                 $questionOneChoice->is_order_by = true;
-            }else{
+            } else {
                 $questionOneChoice->is_order_by = false;
             }
             $questionOneChoice->type = SurveyFormEnum::ONE_CHOICE;
@@ -97,9 +107,9 @@ class SurveyFormController extends Controller
             $questionManyChoice = new Question();
             $questionManyChoice->survey_form_id = $surveyForm->id;
             $questionManyChoice->name = $manyChoice['name'];
-            if($manyChoice['isOrderBy'] == 1){
+            if ($manyChoice['isOrderBy'] == 1) {
                 $questionManyChoice->is_order_by = true;
-            }else{
+            } else {
                 $questionManyChoice->is_order_by = false;
             }
             $questionManyChoice->type = SurveyFormEnum::MANY_CHOICE;

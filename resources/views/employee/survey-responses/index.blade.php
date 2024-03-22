@@ -9,6 +9,16 @@
         <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">{{ __('survey_responses.page_title') }}</h1>
         <div class="p-3 bg-body-extra-light rounded push">
             <form action="" method="GET">
+                <div class="row mb-4">
+                    <div class="col-3">
+                        <x-forms.input id="search" :value="$search" :label="__('lang.search_label')"
+                                       :optionals="['placeholder' => __('lang.input_search')]"/>
+                    </div>
+{{--                    <div class="col-3">--}}
+{{--                        <x-forms.select-option id="name" :value="$name" :list="$departments"--}}
+{{--                                               :label="__('departments.name')"/>--}}
+{{--                    </div>--}}
+                </div>
                 @include('components.btns.search')
             </form>
         </div>

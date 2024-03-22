@@ -9,24 +9,16 @@
         <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">{{ __('manage.manage') . __('survey_forms.page_title') }}</h1>
         <div class="p-3 bg-body-extra-light rounded push">
             <form action="" method="GET">
-                {{--                <div class="row mb-4">--}}
-                {{--                    <div class="col-3">--}}
-                {{--                        <x-forms.input id="s" :value="$s" :label="__('lang.search_label')"--}}
-                {{--                                       :optionals="['placeholder' => __('lang.input_search')]"/>--}}
-                {{--                    </div>--}}
-                {{--                    <div class="col-3">--}}
-                {{--                        <x-forms.select-option id="product_id" :value="$product_id" :list="$products2"--}}
-                {{--                                               :label="__('products.page_title')"/>--}}
-                {{--                    </div>--}}
-                {{--                    <div class="col-3">--}}
-                {{--                        <x-forms.select id="category_id" :name="'name'" :items="$categories" :selected="$category_id"--}}
-                {{--                                        :label="__('categories.page_title')" :optionals="['placeholder' => 'เลือก..']"/>--}}
-                {{--                    </div>--}}
-                {{--                    <div class="col-3">--}}
-                {{--                        <x-forms.input id="exp_date" :value="$exp_date" :label="__('products.exp_date')"--}}
-                {{--                                       :optionals="['input_class' => 'js-flatpickr', 'placeholder' => 'Y-m-d',]"/>--}}
-                {{--                    </div>--}}
-                {{--                </div>--}}
+                                <div class="row mb-4">
+                                    <div class="col-3">
+                                        <x-forms.input id="s" :value="$s" :label="__('lang.search_label')"
+                                                       :optionals="['placeholder' => __('lang.input_search')]"/>
+                                    </div>
+                                    <div class="col-3">
+                                        <x-forms.select-option id="name" :value="$name" :list="$departments"
+                                                               :label="__('departments.name')"/>
+                                    </div>
+                                </div>
                 @include('components.btns.search')
             </form>
         </div>
@@ -46,6 +38,7 @@
                         <tr class="bg-body-dark">
                             <th class="d-none d-sm-table-cell text-center">#</th>
                             <th>{{ __('survey_forms.name') }}</th>
+                            <th>{{ __('departments.name') }}</th>
                             <th>{{ __('lang.created_at') }}</th>
                         </tr>
                         </thead>
@@ -57,6 +50,9 @@
                                             {{ $lists->firstItem() + $index }}</td>
                                         <td class="fw-semibold">
                                             <a href="javascript:void(0)">{{ $d->name }}</a>
+                                        </td>
+                                        <td>
+                                            {{ $d->department_name }}
                                         </td>
                                         <td class="d-none d-sm-table-cell">
                                             {{ get_thai_date_format($d->created_at, 'd/m/Y') }}
@@ -81,6 +77,7 @@
     </div>
 @endsection
 
+@include('components.select2-default')
 @include('components.sweetalert')
 @include('components.list-delete')
 

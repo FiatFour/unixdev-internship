@@ -26,13 +26,14 @@ class SurveyResponseController extends Controller
 //             ->where('employee_departments.user_id', Auth::user()->id)
 //             ->select('survey_forms.*')->get();
 
+        $search = $request->search;
+
         $lists = SurveyForm::leftJoin('departments', 'departments.id',
             'survey_forms.department_id')
             ->leftJoin('employee_departments', 'employee_departments.department_id', 'departments.id')
             ->leftJoin('users', 'users.id', 'employee_departments.user_id')
             ->where('employee_departments.user_id', Auth::user()->id)
-            ->select('survey_forms.*')->get();
-
+            ->select('survey_forms.*')->search($request->s, $request)->get();
 
         $lists->map(function ($item) {
             $query = SurveyResponse::select('survey_form_id')->where([
@@ -49,12 +50,14 @@ class SurveyResponseController extends Controller
             return $item;
         });
 
+
 //            where('user_id',Auth::user()->id)
 
 //        dd($lists);
         return view('employee.survey-responses.index', [
 //            'department' => $department,
             'lists' => $lists,
+            'search' => $search,
         ]);
     }
 
