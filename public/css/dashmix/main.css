@@ -30981,7 +30981,7 @@ readers do not read off random characters that represent icons */
 @font-face {
   font-family: "simple-line-icons";
   src: url(/fonts/Simple-Line-Icons.eot?85e8c542d5e137beecf94e0132812855);
-  src: url(/fonts/Simple-Line-Icons.eot?85e8c542d5e137beecf94e0132812855#iefix) format("embedded-opentype"), url(/fonts/Simple-Line-Icons.woff2?3826fa1cb2348dd93948a50cbd2b8fb6) format("woff2"), url(/fonts/Simple-Line-Icons.ttf?3ec13a24af3fdda1110771d3541915a2) format("truetype"), url(/fonts/Simple-Line-Icons.woff?5c9febce52054ae0b96ddd3e2d173e1a) format("woff"), url(/fonts/Simple-Line-Icons.svg?8c05a971259c98ae861c9e806aff5aea#simple-line-icons) format("svg");
+  src: url(/fonts/Simple-Line-Icons.eot?85e8c542d5e137beecf94e0132812855#iefix) format("embedded-opentype"), url(/fonts/Simple-Line-Icons.woff2?3826fa1cb2348dd93948a50cbd2b8fb6) format("woff2"), url(/fonts/Simple-Line-Icons.ttf?3ec13a24af3fdda1110771d3541915a2) format("truetype"), url(/fonts/Simple-Line-Icons.woff?5c9febce52054ae0b96ddd3e2d173e1a) format("woff"), url(/fonts/Simple-Line-Icons.svg?f304257c13fc8192b2a92cf4331a0632#simple-line-icons) format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -34640,7 +34640,7 @@ div.check-status {
 @font-face {
   font-family: "icomoon";
   src: url(/fonts/icomoon.eot?43b70892f013cc63c994439aed1c2331);
-  src: url(/fonts/icomoon.eot?43b70892f013cc63c994439aed1c2331#iefix) format("embedded-opentype"), url(/fonts/icomoon.ttf?bb723d05001c77c54dc528efd70de71c) format("truetype"), url(/fonts/icomoon.woff?113ca0e84d861d8216bb43afba59e198) format("woff"), url(/fonts/icomoon.svg?e372dffb018911457507f21b519b1bf8#icomoon) format("svg");
+  src: url(/fonts/icomoon.eot?43b70892f013cc63c994439aed1c2331#iefix) format("embedded-opentype"), url(/fonts/icomoon.ttf?bb723d05001c77c54dc528efd70de71c) format("truetype"), url(/fonts/icomoon.woff?113ca0e84d861d8216bb43afba59e198) format("woff"), url(/fonts/icomoon.svg?526db4dec25ad627aec81276b67e6144#icomoon) format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
