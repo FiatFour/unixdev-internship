@@ -82,7 +82,7 @@
                                                 <input class="form-check-input col-sm-4" type="radio"
                                                        name="oneChoiceAnswers[{{$questionIndex}}]"
                                                        value="{{$answer->id}}" disabled
-                                                       @if(in_array($answer->id, $surveyResponses))
+                                                       @if(in_array($answer->id, $surveyResponseChoices))
                                                            checked
                                                        @endif
                                                 />
@@ -94,7 +94,7 @@
                                                 <input class="form-check-input col-sm-4" type="checkbox" disabled
                                                        name="manyChoiceAnswers[{{$questionIndex}}][]"
                                                        value="{{$answer->id}}"
-                                                       @if(in_array($answer->id, $surveyResponses))
+                                                       @if(in_array($answer->id, $surveyResponseChoices))
                                                            checked
                                                     @endif
                                                     {{--                                                    {{$answer->id == $question->answer_id ? 'checked' : ''}}--}}
@@ -107,7 +107,7 @@
                                     @endforeach
                                     @if($question->type == \App\Enums\SurveyFormEnum::TEXT_CHOICE)
                                         <textarea name="textAnswers[{{$questionIndex}}]" class="form-control text-start"
-                                                  disabled>@foreach($surveyResponseText as $item){{$item->question_id == $question->id ? $item->text_answer : ''}}@endforeach
+                                                  disabled>@foreach($surveyResponseTexts as $item){{$item->question_id == $question->id ? $item->text_answer : ''}}@endforeach
                                         </textarea>
                                         <br>
                                     @endif

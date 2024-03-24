@@ -54,14 +54,14 @@ class ReportController extends Controller
             return $item;
         });
 
-        $surveyResponses = SurveyResponse::select('answer_id')
+        $surveyResponseChoices = SurveyResponse::select('answer_id')
             ->where('employee_id', $employeeId)
             ->where('survey_form_id', $surveyForm->id)
             ->whereNotNull('answer_id')
             ->pluck('answer_id')
             ->toArray();
 
-        $surveyResponseText = SurveyResponse::select('question_id', 'text_answer')
+        $surveyResponseTexts = SurveyResponse::select('question_id', 'text_answer')
             ->where('employee_id', $employeeId)
             ->where('survey_form_id', $surveyForm->id)
             ->whereNull('answer_id')
