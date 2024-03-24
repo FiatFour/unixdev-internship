@@ -22,6 +22,7 @@ class SelectOption extends Component
     public $model;
     public $label_suffix;
 
+
     public function __construct($id, $list, $label, $value, $optionals = [])
     {
         $this->id = $id;

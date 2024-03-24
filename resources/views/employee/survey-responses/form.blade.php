@@ -37,12 +37,6 @@
                     <a class="btn btn-alt-secondary" href="be_pages_blog_post_manage.html">
                         <i class="fa fa-arrow-left me-1"></i> แบบสอบถาม
                     </a>
-                    {{--                        <div class="block-options">--}}
-                    {{--                            <div class="form-check form-switch">--}}
-                    {{--                                <input class="form-check-input" type="checkbox" value="" id="dm-post-edit-active" name="dm-post-edit-active" checked>--}}
-                    {{--                                <label class="form-check-label" for="dm-post-edit-active">Set active</label>--}}
-                    {{--                            </div>--}}
-                    {{--                        </div>--}}
                 </div>
                 <div class="block-content">
                     <div class="row justify-content-center push">
@@ -60,7 +54,9 @@
                                             @elseif($question->type == \App\Enums\SurveyFormEnum::MANY_CHOICE)
                                                 <div class="form-check form-check-inline mt-1">
                                                     <input class="form-check-input col-sm-4" type="checkbox"
-                                                           name="manyChoiceAnswers[{{$questionIndex}}][]" value="{{$answer->id}}"/>
+                                                           name="manyChoiceAnswers[{{$questionIndex}}][]" value="{{$answer->id}}"
+                                                            {{$answer->id == $question->answer_id ? 'checked' : ''}}
+                                                    />
                                                     <label class="form-check-label">{{$answer->name}} ({{$answer->score}})</label>
                                                 </div>
                                             @endif
@@ -81,15 +77,6 @@
                         </div>
                     </div>
                 </div>
-{{--                <div class="block-content bg-body-light">--}}
-{{--                    <div class="row justify-content-center push">--}}
-{{--                        <div class="col-md-10">--}}
-{{--                            <a href="{{ route('employee.survey-responses.store', ['surveyForm' => $d]) }}" type="button" class="btn btn-alt-danger my-2">--}}
-{{--                                <i class="fa fa-fw fa-check me-1"></i> {{__('lang.add')}}--}}
-{{--                            </a>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div> --}}
                 <div class="block-content bg-body-light">
                     <div class="row justify-content-center push">
                         <input type="hidden" name="surveyFormId" id="surveyFormId" value="{{ $surveyForm->id }}">
@@ -114,12 +101,5 @@
 
 @push('scripts')
     <script>
-        $view = '{{ isset($view) }}';
-        if ($view) {
-            $('#name').prop('disabled', true);
-            $('#password').prop('disabled', true);
-            $('#email').prop('disabled', true);
-            $('#role').prop('disabled', true);
-        }
     </script>
 @endpush

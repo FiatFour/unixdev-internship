@@ -39,6 +39,6 @@ class BlockHeaderStep extends Component
      */
     public function render()
     {
-        return view('admin.components.blocks.block-header-step');
+        return view('components.blocks.block-header-step');
     }
 }

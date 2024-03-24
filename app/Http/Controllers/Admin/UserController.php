@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\RoleEnum;
 use App\Http\Controllers\Controller;
 use App\Models\Department;
+use App\Models\EmployeeDepartment;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -22,7 +23,7 @@ class UserController extends Controller
         $s = $request->s;
         $name = $request->name;
         $role = $request->role;
-        $lists = User::select('*')->search($request->s, $request)->paginate(PER_PAGE); // PER_PAGE
+        $lists = User::select('*')->search($request->s, $request)->paginate(PER_PAGE);
         $roles = $this->getRole();
         return view('admin.users.index', [
             'lists' => $lists,
@@ -102,10 +103,6 @@ class UserController extends Controller
 
 
         $user = User::firstOrNew(['id' => $request->id]);
-//        if($user->created_at = null){
-//            $user->created_at = date('Y-m-d H:i:s');
-//        }
-//        $user->updated_at = date('Y-m-d H:i:s');
         $user->name = $request->name;
         $user->email = $request->email;
         $user->role = $request->role;
@@ -114,6 +111,16 @@ class UserController extends Controller
             $user->password = Hash::make($request->password);
         }
         $user->save();
+
+        EmployeeDepartment::where([
+            ['department_id', $request->oldDepartmentId],
+            ['user_id', $user->id]
+        ])->delete();
+
+        $employeeDepartment = new EmployeeDepartment();
+        $employeeDepartment->user_id = $user->id;
+        $employeeDepartment->department_id = $request->departmentId;
+        $employeeDepartment->save();
 
         $redirect_route = route('admin.users.index');
         return $this->responseValidateSuccess($redirect_route);
@@ -158,6 +165,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
+        EmployeeDepartment::where('user_id', $user->id)->delete();
 
         if (empty($user)) {
             return $this->responseEmpty('User');

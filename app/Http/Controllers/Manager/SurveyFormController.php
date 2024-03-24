@@ -8,6 +8,8 @@ use App\Models\Answer;
 use App\Models\Department;
 use App\Models\Question;
 use App\Models\SurveyForm;
+use App\Models\SurveyResponse;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -27,7 +29,6 @@ class SurveyFormController extends Controller
             ->search($request->s, $request)
             ->paginate(PER_PAGE);
         $departments = Department::select('id', 'name')->where('manager_id', Auth::user()->id)->get();
-
 
         return view('manager.survey-forms.index', [
             'departments' => $departments,
@@ -138,4 +139,39 @@ class SurveyFormController extends Controller
         $redirect_route = route('manager.survey-forms.index');
         return $this->responseValidateSuccess($redirect_route);
     }
+
+    public function show(SurveyForm $surveyForm, Request $request)
+    {
+        $employeeId = $request->employeeId;
+
+        if ($surveyForm == null) {
+            return redirect()->route('manager.survey-forms.index');
+        }
+
+        $employees = User::leftJoin('employee_departments', 'employee_departments.user_id', 'users.id')
+            ->where('employee_departments.department_id', $surveyForm->department_id)->get();
+
+        $questions = Question::select('*')->where('survey_form_id', $surveyForm->id)->get();
+        $questions->map(function ($item) {
+            $query = Answer::select('*')->where('question_id', $item->id);
+            if ($item->is_order_by == true) {
+                $query = $query->orderBy('score');
+            }
+            $answers = $query->get();
+            $item->answers = $answers;
+
+            return $item;
+        });
+
+        $page_title = __('lang.view') . __('survey-forms.page_title');
+        return view('manager.survey-forms.data-only', [
+                'page_title' => $page_title,
+                'surveyForm' => $surveyForm,
+                'questions' => $questions,
+                'employees' => $employees,
+                'employeeId' => $employeeId,
+            ]
+        );
+    }
+
 }
