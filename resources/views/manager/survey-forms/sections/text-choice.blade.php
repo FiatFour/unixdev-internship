@@ -2,7 +2,7 @@
     <div class="table">
         <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
             <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">{{ __('survey_forms.text_choice') }}</h1>
-            <a href="#" type="button" class="btn btn-alt-primary my-2" onclick="openTextChoiceModal()"
+            <a href="#" type="button" class="btn btn-alt-primary my-2" onclick="openTextChoiceModal()" data-test="textChoice"
                id="openModal">
                 <i class="fa fa-fw fa-plus me-1"></i> {{ __('manage.add') . __('survey_forms.text_choice') }}
             </a>

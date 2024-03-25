@@ -29,20 +29,20 @@
                                        :optionals="['placeholder' => __('users.input_name')]"/>
                     </div>
                     <div class="col-6">
-                        <x-forms.select-option id="role" :value="$user->role" :list="$roles"
-                                               :label="__('users.role')"/>
+                        <x-forms.select-option id="role" :value="$user->role" :list="$roles" 
+                                               :label="__('users.role')" :optionals="['test_select' => 'role']"/>
                     </div>
                 </div>
                 <div class="row mb-4">
                     <div class="col-6">
-                        <x-forms.select-option id="departmentId" :value="$user->department_id" :list="$departments"
+                        <x-forms.select-option id="departmentId" :value="$user->department_id" :list="$departments" :optionals="['test_select' => 'department']"
                                                :label="__('departments.name')"/>
                     </div>
                 </div>
                 <div class="row">
                     <input type="hidden" name="id" id="id" value="{{ $user->id }}">
                     <x-forms.submit-group
-                        :optionals="['url' => 'admin.users.index', 'view' => empty($view) ? null : $view]"/>
+                        :optionals="['url' => 'admin.users.index', 'view' => empty($view) ? null : $view, 'submit' => 'SUBMIT']"/>
                 </div>
             </form>
         </div>

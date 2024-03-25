@@ -21,13 +21,17 @@ class SelectOption extends Component
     public $multiple;
     public $model;
     public $label_suffix;
+    public $test_select;
 
-    public function __construct($id, $list, $label, $value, $optionals = [])
+
+    public function __construct($id, $list, $label, $value, $optionals  = [] )
     {
         $this->id = $id;
         $this->list = $list;
         $this->label = $label;
         $this->value = $value;
+        $this->test_select = (isset($optionals['test_select']) ? $optionals['test_select'] : null);
+        $this->name = (isset($optionals['name']) ? $optionals['name'] : null);
         $this->label_class = (isset($optionals['label_class']) ? $optionals['label_class'] : 'text-start  col-form-label');
         $this->input_class = (isset($optionals['input_class']) ? $optionals['input_class'] : 'col-sm-4');
         $this->select_option = (isset($optionals['select_option']) ? $optionals['select_option'] : false);

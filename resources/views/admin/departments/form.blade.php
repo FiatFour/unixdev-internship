@@ -15,13 +15,13 @@
             <form id="save-form">
                 <div class="row mb-4">
                     <div class="col-6">
-                        <x-forms.input id="name" :value="$department->name" :label="__('departments.name')"
-                                       :optionals="['placeholder' => __('departments.input_name')]"/>
+                        <x-forms.input  id="name" :value="$department->name" :label="__('departments.name')"
+                                       :optionals="['placeholder' => __('departments.input_name'), 'test_select' => 'nameDepartment']" />
 
                     </div>
                     <div class="col-6">
                         <x-forms.select-option id="managerId" :value="$department->manager_id" :list="$managers"
-                                               :label="__('departments.select_manager')"/>
+                                               :label="__('departments.select_manager')" :optionals="['test_select' => 'MANAGER']"/>
                     </div>
                 </div>
                 <div class="row mb-4">
@@ -29,12 +29,12 @@
                         @if (isset($view))
                             <x-forms.select-option id="employeeId" :value="$employeeId" :list="$employees"
                                                    :label="__('departments.select_employee')"
-                                                   :optionals="['multiple' => true, 'disabled' => true]"
+                                                   :optionals="['multiple' => true, 'disabled' => true, 'test_select' => 'EMPLOYEE']"
                             />
                         @else
                             <x-forms.select-option id="employeeId[]" :value="$employeeId" :list="$employees"
                                                    :label="__('departments.select_employee')"
-                                                   :optionals="['multiple' => true]"
+                                                   :optionals="['multiple' => true, 'test_select' => 'EMPLOYEE']"
                             />
                         @endif
 
@@ -43,7 +43,7 @@
                 <div class="row">
                     <input type="hidden" name="id" id="id" value="{{ $department->id }}">
                     <x-forms.submit-group
-                        :optionals="['url' => 'admin.departments.index', 'view' => empty($view) ? null : $view]"/>
+                        :optionals="['url' => 'admin.departments.index', 'view' => empty($view) ? null : $view , 'submit' => 'SUBMIT']"/>
                 </div>
             </form>
         </div>

@@ -16,7 +16,7 @@
       <div class="space-x-1">
         <!-- User Dropdown -->
         <div class="dropdown d-inline-block">
-          <button type="button" class="btn btn-alt-secondary" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button type="button" class="btn btn-alt-secondary" data-test="dropDown" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-fw fa-user d-sm-none"></i>
             <span class="d-none d-sm-inline-block">
                 {{ Auth::user()->name }}
@@ -28,12 +28,12 @@
               User Options
             </div>
             <div class="p-2">
-              <a class="dropdown-item" href="be_pages_generic_profile.html">
+              <a class="dropdown-item" href="be_pages_generic_profile.html" data-test="profile">
                 <i class="far fa-fw fa-user me-1"></i> Profile
               </a>
               <div role="separator" class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('singout') }}">
-                    <i class="far fa-fw fa-arrow-alt-circle-left me-1"></i> Sign Out
+                    <i class="far fa-fw fa-arrow-alt-circle-left me-1" data-test="logout"></i> Sign Out
                 </a>
             </div>
           </div>

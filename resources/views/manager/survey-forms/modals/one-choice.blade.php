@@ -4,20 +4,20 @@
             <x-forms.input-new-line id="oneChoiceTitle" :value="null"
                                     :name="'oneChoiceTitle'"
                                     :label="__('survey_forms.one_choice_label')"
-                                    :optionals="['required' => true]"/>
+                                    :optionals="['required' => true,'text_test'=>'nameOneChoice']"/>
         </div>
 
         <div class="col-6">
             <label class="text-start col-form-label form-label">{{__('survey_forms.display_type')}}</label><br>
             <div class="space-x-2">
                 <div class="form-check form-check-inline mt-1">
-                    <input class="form-check-input col-sm-4" type="radio" name="isOrderByOneChoice" value="1"
-                           id="isOrderByTrueOneChoice">
+                    <input class="form-check-input col-sm-4" type="radio" name="isOrderByOneChoice" value="1" 
+                           id="isOrderByTrueOneChoice" data-test="sortOneChoice">
                     <label class="form-check-label">{{__('survey_forms.is_order_by')}}</label>
                 </div>
                 <div class="form-check form-check-inline mt-1">
                     <input class="form-check-input col-sm-4" type="radio" name="isOrderByOneChoice" value="2"
-                           id="isOrderByFalseOneChoice">
+                           id="isOrderByFalseOneChoice" data-test="randomOneChoice">
                     <label class="form-check-label">{{__('survey_forms.random')}}</label>
                 </div>
             </div>
@@ -26,7 +26,7 @@
     </div>
 
 
-    <button type="button" class="btn btn-primary mb-3 float-end add-product-btn" onclick="addOneChoiceLine()">
+    <button type="button" class="btn btn-primary mb-3 float-end add-product-btn" onclick="addOneChoiceLine()" data-test="createOneChoice">
         <i class="icon-add-circle"></i> เพิ่ม
     </button>
 
@@ -50,17 +50,17 @@
                             <input type="text" class="form-control"
                                    :id="'name-' + modalOneChoiceIndex + '-' + modalOneChoice.OneChoiceIndex"
                                    v-bind:name="'modalOneChoices[' + modalOneChoiceIndex +'][' + modalOneChoice.oneChoiceIndex +'][name]'"
-                                   v-model="modalOneChoice.name"/>
+                                   v-model="modalOneChoice.name" data-test="textOneChoice"/>
                         </td>
                         <td>
                             <input type="number" class="form-control"
                                    :id="'score-' + modalOneChoiceIndex  + '-' + modalOneChoice.OneChoiceIndex"
                                    v-bind:name="'modalOneChoices[' + modalOneChoiceIndex +'][' + modalOneChoice.oneChoiceIndex +'][score]'"
-                                   v-model="modalOneChoice.score" placeholder="0"/>
+                                   v-model="modalOneChoice.score" placeholder="0" data-test="scoreOneChoice"/>
                         </td>
                         <td>
                             <a class="btn btn-outline-light btn-mini"
-                               v-on:click="removeOneChoiceLine(modalOneChoiceIndex)"><i
+                               v-on:click="removeOneChoiceLine(modalOneChoiceIndex)" data-test="deleteOneChoice"><i
                                     class="fa-solid fa-trash-can" style="color:red"></i></a>
                         </td>
 
@@ -82,7 +82,7 @@
     <x-slot name="footer">
         <button type="button" class="btn btn-outline-secondary btn-clear-search"
                 data-bs-dismiss="modal">{{ __('lang.back') }}</button>
-        <button type="button" class="btn btn-primary add-extra" onclick="saveOneChoiceModal()"><i
+        <button type="button" class="btn btn-primary add-extra" onclick="saveOneChoiceModal()" data-test="saveOneChoice"><i
                 class="icon-save me-1"></i>
             {{ __('lang.save') }}</button>
     </x-slot>

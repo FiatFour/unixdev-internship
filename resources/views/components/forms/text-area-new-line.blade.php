@@ -8,6 +8,6 @@
         @endif
     </label>
     <div class="{{ $input_class }}">
-        <textarea class="form-control {{ (($html) ? $html_class : '') }}" id="{{ $id }}" name="{{ $id }}" rows="{{$row}}" placeholder="{{ $placeholder }}" {{ $readonly ? 'readonly' : '' }} >{{ $value }}</textarea>
+        <textarea class="form-control {{ (($html) ? $html_class : '') }}" id="{{ $id }}" name="{{ $id }}" rows="{{$row}}" placeholder="{{ $placeholder }}" {{ $readonly ? 'readonly' : '' }}  data-test="{{$text_test}}">{{ $value }}</textarea>
     </div>
 </div>

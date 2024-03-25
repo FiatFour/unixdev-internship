@@ -35,13 +35,13 @@
         <div class="content-side">
             <ul class="nav-main">
                 <li class="nav-main-item">
-                    <a class="nav-main-link" href="{{ route('admin.users.index') }}">
+                    <a class="nav-main-link" href="{{ route('admin.users.index') }}" data-test="manageUser">
                         <i class="nav-main-link-icon fa fa-user"></i>
                         <span class="nav-main-link-name">บัญชีผู้ใช้งาน</span>
                     </a>
                 </li>
                 <li class="nav-main-item">
-                    <a class="nav-main-link" href="{{ route('admin.departments.index') }}">
+                    <a class="nav-main-link" href="{{ route('admin.departments.index') }}" data-test="department">
                         <i class="nav-main-link-icon fa fa-user"></i>
                         <span class="nav-main-link-name">แผนก</span>
                     </a>

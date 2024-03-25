@@ -25,11 +25,15 @@ class InputNewLine extends Component
     public $readonly;
     public $label_suffix;
 
+    public $text_test;
+
+
     public function __construct($id, $value, $label, $optionals = [])
     {
         $this->id = $id;
         $this->value = $value;
         $this->label = $label;
+        $this->text_test = (isset($optionals['text_test']) ? $optionals['text_test'] : null);
         $this->type = (isset($optionals['type']) ? $optionals['type'] : 'text');
         $this->placeholder = (isset($optionals['placeholder']) ? $optionals['placeholder'] : '');
         $this->maxlength = (isset($optionals['maxlength']) ? $optionals['maxlength'] : 100);
