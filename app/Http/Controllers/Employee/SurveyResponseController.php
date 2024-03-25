@@ -11,21 +11,12 @@ use App\Models\SurveyForm;
 use App\Models\SurveyResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class SurveyResponseController extends Controller
 {
     public function index(Request $request)
     {
-//        $department = Department::where('manager_id', Auth::user()->id)->first();
-
-//        $surveyForms = SurveyForm::select('*')->where()->paginate(PER_PAGE);
-
-//        $lists = SurveyForm::leftJoin('departments', 'departments.id',
-//                'survey_forms.department_id')
-//             ->leftJoin('employee_departments', 'employee_departments.department_id', 'departments.id')
-//             ->where('employee_departments.user_id', Auth::user()->id)
-//             ->select('survey_forms.*')->get();
-
         $search = $request->search;
 
         $lists = SurveyForm::leftJoin('departments', 'departments.id',
@@ -41,21 +32,17 @@ class SurveyResponseController extends Controller
                 ['employee_id', Auth::user()->id],
             ])->first();
 
-            if($query->survey_form_id != null){
-                $item['responsed'] = true;
-            }else{
-                $item['responsed'] = false;
+            if (isset($query->survey_form_id)) {
+                if ($query->survey_form_id != null) {
+                    $item['responsed'] = true;
+                } else {
+                    $item['responsed'] = false;
+                }
             }
-
             return $item;
         });
 
-
-//            where('user_id',Auth::user()->id)
-
-//        dd($lists);
         return view('employee.survey-responses.index', [
-//            'department' => $department,
             'lists' => $lists,
             'search' => $search,
         ]);
@@ -64,22 +51,13 @@ class SurveyResponseController extends Controller
     public function create(SurveyForm $surveyForm)
     {
         $page_title = __('lang.add') . __('survey_forms.page_title');
-//        $surveyForm = new SurveyForm();
 
         $lists = SurveyForm::
         leftJoin('questions', 'questions.survey_form_id', 'survey_forms.id')
             ->leftJoin('answers', 'answers.question_id', 'questions.id')
             ->where('survey_forms.id', $surveyForm->id)
             ->select('survey_forms.id', 'survey_forms.name', 'questions.id as question_id', 'questions.name as question_name', 'questions.type', 'questions.is_order_by', 'answers.id as answers_id', 'answers.name as answers_name', 'answers.score as answers_score',)
-//            ->group('survey_forms.id')
             ->get();
-//
-//        $lists = SurveyForm::
-//            leftJoin('questions', 'questions.survey_form_id', 'survey_forms.id')
-//            ->leftJoin('answers', 'answers.question_id', 'questions.id')
-//            ->where('survey_forms.id', $surveyForm->id)
-//            ->select('survey_forms.id', 'survey_forms.name', 'questions.id as question_id', 'questions.name as question_name', 'questions.type', 'questions.is_order_by', 'answers.id as answers_id', 'answers.name as answers_name', 'answers.score as answers_score',)
-//            ->get();
 
         $questions = Question::select('*')->where('survey_form_id', $surveyForm->id)->get();
         $questions->map(function ($item) {
@@ -93,9 +71,6 @@ class SurveyResponseController extends Controller
             return $item;
         });
 
-//        $questionIds = $questions->pluck('id')->toArray();
-//        $answers = Answer::select('*')->whereIn('question_id', $questionIds);
-
         return view(
             'employee.survey-responses.form',
             [
@@ -108,12 +83,12 @@ class SurveyResponseController extends Controller
 
     public function store(Request $request)
     {
-
         $questions = Question::select('id')->where('survey_form_id', $request->surveyFormId)->get();
 
 //        foreach ($request->questions as $index => $item) {
 //
 //        };
+
         foreach ($questions as $questionIndex => $question) {
             foreach ($request->oneChoiceAnswers as $oneChoiceIndex => $oneChoiceAnswerId) {
                 if ($oneChoiceIndex == $questionIndex) {
@@ -135,7 +110,6 @@ class SurveyResponseController extends Controller
                         $surveyResponse->answer_id = $manyChoiceAnswerId;
                         $surveyResponse->save();
                     }
-
                 }
             }
             foreach ($request->textAnswers as $textIndex => $textAnswer) {
@@ -148,9 +122,10 @@ class SurveyResponseController extends Controller
                     $surveyResponse->save();
                 }
             }
-
         }
 
-
+        $redirect_route = route('employee.survey-responses.index');
+        return $this->responseValidateSuccess($redirect_route);
     }
+
 }

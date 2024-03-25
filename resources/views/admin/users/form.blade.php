@@ -41,6 +41,7 @@
                 </div>
                 <div class="row">
                     <input type="hidden" name="id" id="id" value="{{ $user->id }}">
+                    <input type="hidden" name="oldDepartmentId" id="oldDepartmentId" value="{{ $user->department_id }}">
                     <x-forms.submit-group
                         :optionals="['url' => 'admin.users.index', 'view' => empty($view) ? null : $view, 'submit' => 'SUBMIT']"/>
                 </div>

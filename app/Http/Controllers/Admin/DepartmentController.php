@@ -84,10 +84,6 @@ class DepartmentController extends Controller
         }
 
         $department = Department::firstOrNew(['id' => $request->id]);
-//        if($department->created_at = null){
-//            $department->created_at = date('Y-m-d H:i:s');
-//        }
-//        $department->updated_at = date('Y-m-d H:i:s');
         $department->name = $request->name;
         $department->manager_id = $request->managerId;
         $department->save();
@@ -102,15 +98,6 @@ class DepartmentController extends Controller
                 $employeeDepartment->save();
             }
         }
-
-
-//        foreach ($request->employeeId as $index => $employeeId) {
-//            $employeeIdValue = $employeeId; // Assuming $request->employeeId is an array of user IDs
-//            EmployeeDepartment::firstOrCreate([
-//                'department_id' => $department->id,
-//                'user_id' => $employeeIdValue
-//            ]);
-//        }
 
         $redirect_route = route('admin.departments.index');
         return $this->responseValidateSuccess($redirect_route);
@@ -139,11 +126,6 @@ class DepartmentController extends Controller
         if ($department == null) {
             return redirect()->route('admin.departments.index');
         }
-
-//        $employees = User::select('users.id', 'users.name', 'departments.manager_id')
-//            ->leftJoin('departments', 'users.id', '!=', 'departments.manager_id')
-//            ->where('role', '!=', RoleEnum::ADMIN)->get();
-
         $roles = $this->getRole();
 
         $employees = User::select('users.id', 'users.name')

@@ -40,12 +40,6 @@
                     </div>
                 </td>
                 <input type="hidden" v-bind:name="'textChoices['+ index+ '][id]'" v-bind:value="item.id">
-{{--                <input type="hidden" v-bind:name="'order_detail['+ index+ '][order_id]'" id="order_id"--}}
-{{--                       v-bind:value="item.order_id">--}}
-{{--                <input type="hidden" v-bind:name="'order_detail['+ index+ '][product_id]'" id="product_id"--}}
-{{--                       v-bind:value="item.product_id">--}}
-{{--                <input type="hidden" v-bind:name="'order_detail['+ index+ '][price]'" id="price"--}}
-{{--                       v-bind:value="item.price">--}}
 
                 <div v-for="(item, index) in textChoices">
                     <input type="hidden" v-bind:name="'textChoices['+ index+ '][id]'"
@@ -54,16 +48,6 @@
                     <input type="hidden" v-bind:name="'textChoices['+ index+ '][isOrderBy]'" v-bind:value="item.isOrderBy">
                 </div>
 
-{{--                <div v-for="(item, index) in modalTextChoices">--}}
-{{--                    <input type="hidden" v-bind:name="'textChoiceQuestions[' + index +'][' + item.textChoiceIndex +'][id]'"--}}
-{{--                           v-bind:value="item.id">--}}
-{{--                    <input type="hidden" v-bind:name="'textChoiceQuestions[' + index +'][' + item.textChoiceIndex +'][name]'"--}}
-{{--                           v-bind:value="item.name">--}}
-{{--                    <input type="hidden" v-bind:name="'textChoiceQuestions[' + index +'][' + item.textChoiceIndex +'][score]'"--}}
-{{--                           v-bind:value="item.score">--}}
-{{--                    <input type="hidden" v-bind:name="'textChoiceQuestions[' + index +'][' + item.textChoiceIndex +'][textChoiceIndex]'"--}}
-{{--                           v-bind:value="item.textChoiceIndex">--}}
-{{--                </div>--}}
                 <div v-for="(item, index) in modalTextChoices">
                     <input type="hidden" v-bind:name="'textChoiceQuestions[' + index +'][id]'"
                            v-bind:value="item.id">

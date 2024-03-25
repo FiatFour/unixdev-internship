@@ -14,10 +14,6 @@
                         <x-forms.input id="search" :value="$search" :label="__('lang.search_label')"
                                        :optionals="['placeholder' => __('lang.input_search')]"/>
                     </div>
-{{--                    <div class="col-3">--}}
-{{--                        <x-forms.select-option id="name" :value="$name" :list="$departments"--}}
-{{--                                               :label="__('departments.name')"/>--}}
-{{--                    </div>--}}
                 </div>
                 @include('components.btns.search')
             </form>
@@ -93,5 +89,4 @@
 @endsection
 
 @include('components.sweetalert')
-@include('components.list-delete')
 

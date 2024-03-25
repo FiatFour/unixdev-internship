@@ -40,6 +40,7 @@
                             <th>{{ __('survey_forms.name') }}</th>
                             <th>{{ __('departments.name') }}</th>
                             <th>{{ __('lang.created_at') }}</th>
+                            <th>{{ __('lang.tools') }}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -56,6 +57,23 @@
                                         </td>
                                         <td class="d-none d-sm-table-cell">
                                             {{ get_thai_date_format($d->created_at, 'd/m/Y') }}
+                                        </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <div class="col-sm-12">
+                                                    <div class="dropdown dropleft">
+                                                        <button type="button" class="btn-block-option"
+                                                                data-bs-toggle="dropdown" aria-haspopup="true"
+                                                                aria-expanded="false">
+                                                            <i class="fa fa-ellipsis-v"></i>
+                                                        </button>
+                                                        <div class="dropdown-menu" aria-labelledby="dropdown-dropleft-dark">
+                                                                <a class="dropdown-item" href="{{ route('manager.survey-reports.data-only', ['survey_form' => $d]) }}"><i class="fa fa-eye me-1"></i> ข้อมูลดิบ</a>
+                                                                <a class="dropdown-item" href="#"><i class="far fa-eye me-1"></i> ข้อมูลประมวลผล</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -28,6 +28,6 @@ class BlockTable extends Component
      */
     public function render()
     {
-        return view('admin.components.blocks.block');
+        return view('components.blocks.block');
     }
 }

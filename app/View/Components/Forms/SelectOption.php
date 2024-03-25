@@ -25,6 +25,7 @@ class SelectOption extends Component
 
 
     public function __construct($id, $list, $label, $value, $optionals  = [] )
+
     {
         $this->id = $id;
         $this->list = $list;

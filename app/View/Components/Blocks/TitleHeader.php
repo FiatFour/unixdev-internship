@@ -26,6 +26,6 @@ class TitleHeader extends Component
      */
     public function render()
     {
-        return view('admin.components.blocks.title-header');
+        return view('components.blocks.title-header');
     }
 }
