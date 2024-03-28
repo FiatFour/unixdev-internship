@@ -15,13 +15,6 @@
         <div class="content content-full">
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                 <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">{{$surveyForm->name}}</h1>
-                <nav class="flex-shrink-0 my-2 my-sm-0 ms-sm-3" aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item">Pages</li>
-                        <li class="breadcrumb-item">Blog</li>
-                        <li class="breadcrumb-item active" aria-current="page">Edit</li>
-                    </ol>
-                </nav>
             </div>
         </div>
     </div>
@@ -55,7 +48,7 @@
                                 class="fa fa-rotate-left"></i> {{ __('lang.clear_search') }}</a>
                         <a onclick="getData()"
                            class="btn btn-outline-secondary btn-clear-search btn-custom-size me-2"><i
-                                class="fa fa-rotate-left"></i> zz</a>
+                                class="fa fa-magnifying-glass"></i> {{ __('lang.search') }}</a>
                         {{--                        <button type="submit" class="btn btn-primary btn-custom-size" onclick="getData()"><i class="fa fa-magnifying-glass"></i> {{ __('lang.search') }}</button>--}}
                     </div>
                 </div>

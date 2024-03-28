@@ -19,19 +19,18 @@
                         score: score,
                         manyChoiceIndex: manyChoiceIndex,
                     }
-                    console.log(this.modalManyChoices);
                     this.modalManyChoices.push(data);
                 },
                 setLengthManyChoice: function () {
                     return this.manyChoices.length;
                 },
-                addManyChoiceLine() {
-                    var manyChoiceIndex = this.manyChoices.length
-                    this.pushManyChoiceLine(null, null, manyChoiceIndex);
-                },
-                removeManyChoiceLine: function (index) {
-                    this.modalManyChoices.splice(index, 1);
-                },
+                // addManyChoiceLine() {
+                //     var manyChoiceIndex = this.manyChoices.length
+                //     this.pushManyChoiceLine(null, null, manyChoiceIndex);
+                // },
+                // removeManyChoiceLine: function (index) {
+                //     this.modalManyChoices.splice(index, 1);
+                // },
                 addManyChoice: function () {
                     this.setManyChoiceIndex(this.setLengthManyChoice());
                     this.clearManyChoiceModalData();

@@ -11,7 +11,9 @@ use App\Models\SurveyForm;
 use App\Models\SurveyResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class SurveyResponseController extends Controller
 {
@@ -61,7 +63,7 @@ class SurveyResponseController extends Controller
 
         $questions = Question::select('*')->where('survey_form_id', $surveyForm->id)->get();
         $questions->map(function ($item) {
-            $query = Answer::select('*')->where('question_id', $item->id);
+            $query = Answer::select('id', 'name', 'score')->where('question_id', $item->id);
             if ($item->is_order_by == true) {
                 $query = $query->orderBy('score');
             }
@@ -83,11 +85,28 @@ class SurveyResponseController extends Controller
 
     public function store(Request $request)
     {
-        $questions = Question::select('id')->where('survey_form_id', $request->surveyFormId)->get();
+        $validator = Validator::make($request->all(), [
+            // Validate radio inputs as array
+            'oneChoiceAnswers'    => 'required|array',
+            'oneChoiceAnswers.*' => 'required', // This ensures that at least one radio button in each group is selected
 
-//        foreach ($request->questions as $index => $item) {
-//
-//        };
+            // Validate checkbox inputs as array
+            'manyChoiceAnswers'    => 'required|array',
+            'manyChoiceAnswers.*.*' => 'required', // This ensures that at least one checkbox in each group is checked
+
+            "textAnswers"    => "required|array",
+            "textAnswers.*"  => "required|string",
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'test',
+                'errors' => $validator->errors(),
+            ]);
+        }
+
+        $questions = Question::select('id')->where('survey_form_id', $request->surveyFormId)->get();
 
         foreach ($questions as $questionIndex => $question) {
             foreach ($request->oneChoiceAnswers as $oneChoiceIndex => $oneChoiceAnswerId) {

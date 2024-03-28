@@ -19,7 +19,8 @@ class DepartmentController extends Controller
         $name = $request->name;
         $manager = $request->manager;
 
-        $lists = Department::select('departments.*', 'users.name as manager_name')
+        $lists = Department::select('departments.name', 'departments.id','departments.created_at'
+            , 'users.name as manager_name')
             ->latest('departments.id')
             ->leftJoin('users', 'users.id',
                 'departments.manager_id')
@@ -188,11 +189,11 @@ class DepartmentController extends Controller
     public function destroy($id)
     {
         $department = Department::find($id);
-        EmployeeDepartment::where('department_id', $department->id)->delete();
-
         if (empty($department)) {
             return $this->responseEmpty('Department');
         }
+
+        EmployeeDepartment::where('department_id', $department->id)->delete();
 
         $department->delete();
         return $this->responseDeletedSuccess('Department', 'admin.departments.index');

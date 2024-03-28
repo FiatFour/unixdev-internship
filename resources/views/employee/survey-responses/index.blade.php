@@ -82,7 +82,6 @@
                 </div>
                 <div class="d-flex flex-row d-flex justify-content-end">
                 </div>
-{{--                {!! $lists->appends(\Request::except('page'))->render() !!}--}}
             </div>
         </div>
     </div>

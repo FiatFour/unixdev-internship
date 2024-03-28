@@ -23,7 +23,6 @@
             </form>
         </div>
 
-
         <div class="block block-rounded">
             <div class="block-content">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
@@ -69,7 +68,7 @@
                                                         </button>
                                                         <div class="dropdown-menu" aria-labelledby="dropdown-dropleft-dark">
                                                                 <a class="dropdown-item" href="{{ route('manager.survey-reports.data-only', ['survey_form' => $d]) }}"><i class="fa fa-eye me-1"></i> ข้อมูลดิบ</a>
-                                                                <a class="dropdown-item" href="#"><i class="far fa-eye me-1"></i> ข้อมูลประมวลผล</a>
+{{--                                                                <a class="dropdown-item" href="#"><i class="far fa-eye me-1"></i> ข้อมูลประมวลผล</a>--}}
                                                         </div>
                                                     </div>
                                                 </div>

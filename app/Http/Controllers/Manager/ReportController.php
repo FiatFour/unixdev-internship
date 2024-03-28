@@ -43,7 +43,7 @@ class ReportController extends Controller
             ->get();
 
         $questions->map(function ($item) use ($employeeId) {
-            $query = Answer::select('answers.*')->where('answers.question_id', $item->id);
+            $query = Answer::select('answers.id', 'answers.name', 'answers.score', )->where('answers.question_id', $item->id);
             if ($item->is_order_by == true) {
                 $query = $query->orderBy('answers.score');
             }
@@ -74,8 +74,8 @@ class ReportController extends Controller
                 'questions' => $questions,
                 'employees' => $employees,
                 'employeeId' => $employeeId,
-                'surveyResponses' => $surveyResponses,
-                'surveyResponseText' => $surveyResponseText,
+                'surveyResponseChoices' => $surveyResponseChoices,
+                'surveyResponseTexts' => $surveyResponseTexts,
             ]
         );
     }

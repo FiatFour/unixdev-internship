@@ -29,16 +29,19 @@
                     });
                 } else {
                     // hideLoading();
-                    {{--mySwal.fire({--}}
-                    {{--    title: "{{ __('lang.store_error_title') }}",--}}
-                    {{--    text: response.data.message,--}}
-                    {{--    icon: 'error',--}}
-                    {{--    confirmButtonText: "{{ __('lang.ok') }}",--}}
-                    {{--}).then(value => {--}}
-                    {{--    if (value) {--}}
-                    {{--        //--}}
-                    {{--    }--}}
-                    {{--});--}}
+
+                    if(response.data.message == 'test'){
+                        mySwal.fire({
+                            title: "{{ __('lang.store_error_title') }}",
+                            text: 'กรุณาตอบคำถามให้ครบถ้วน',
+                            icon: 'error',
+                            confirmButtonText: "{{ __('lang.ok') }}",
+                        }).then(value => {
+                            if (value) {
+                                //
+                            }
+                        });
+                    }else{
                     var errors = response.data.errors;
 
                     $('.error').removeClass('invalid-feedback').html('');
@@ -50,6 +53,7 @@
                             .addClass('invalid-feedback')
                             .html(value);
                     });
+                    }
                 }
             }).catch(error => {
                 // hideLoading();

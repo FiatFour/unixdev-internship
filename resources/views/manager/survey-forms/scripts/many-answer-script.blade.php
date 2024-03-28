@@ -27,7 +27,7 @@
                 },
                 addManyAnswerLine: function() {
                     var manyChoiceIndex = addManyChoiceVue.getManyChoiceIndex();
-                    this.pushManyChoiceLine(null, 0, manyChoiceIndex);
+                    this.pushManyChoiceLine(null, null, manyChoiceIndex);
                 },
                 addManyChoice: function (){
                     this.modalManyChoices = [];

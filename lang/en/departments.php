@@ -2,6 +2,7 @@
 return [
     'page_title' => 'แผนก',
     'name' => 'ชื่อแผนก',
+    'main_name' => 'ชื่อแผนกหลัก',
     'input_name' => 'กรอกชื่อแผนก',
     'manager' => 'หัวหน้าแผนก',
     'select_manager' => 'เลือกหัวหน้าแผนก',

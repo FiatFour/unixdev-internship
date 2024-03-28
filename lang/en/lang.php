@@ -8,13 +8,13 @@ return [
     ],
 
     'status' => 'สถานะ',
-//    'status_' . STATUS_ACTIVE => 'ใช้งาน',
-//    'status_' . STATUS_INACTIVE => 'ระงับ',
-//    'status_' . STATUS_DEFAULT => 'ระงับ',
-//
-//    'status_class_' . STATUS_ACTIVE => 'success',
-//    'status_class_' . STATUS_INACTIVE => 'secondary',
-//    'status_class_' . STATUS_DEFAULT => 'secondary',
+    'status_' . STATUS_ACTIVE => 'ใช้งาน',
+    'status_' . STATUS_INACTIVE => 'ระงับ',
+    'status_' . STATUS_DEFAULT => 'ระงับ',
+
+    'status_class_' . STATUS_ACTIVE => 'success',
+    'status_class_' . STATUS_INACTIVE => 'secondary',
+    'status_class_' . STATUS_DEFAULT => 'secondary',
 
     'job_type_rental' => 'เช่าสั้น',
     'job_type_lt_rental' => 'เช่ายาว',
@@ -36,7 +36,7 @@ return [
     'search_placeholder' => 'ระบุคำที่ต้องการ',
     'search' => 'ค้นหา',
     'select' => 'ค้นหา',
-    'input_search' => 'ใส่ค้นหา',
+    'input_search' => 'ใส่คำค้นหา',
     'clear_search' => 'ล้างค่า',
     'tools' => 'เครื่องมือ',
     'edit' => 'แก้ไข',

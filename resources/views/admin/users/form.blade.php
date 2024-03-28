@@ -36,7 +36,7 @@
                 <div class="row mb-4">
                     <div class="col-6">
                         <x-forms.select-option id="departmentId" :value="$user->department_id" :list="$departments"
-                                               :label="__('departments.name')"/>
+                                               :label="__('departments.main_name')"/>
                     </div>
                 </div>
                 <div class="row">

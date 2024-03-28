@@ -15,14 +15,7 @@
     <div class="bg-body-light">
         <div class="content content-full">
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-                <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">{{$surveyForm->name}}</h1>
-                <nav class="flex-shrink-0 my-2 my-sm-0 ms-sm-3" aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item">Pages</li>
-                        <li class="breadcrumb-item">Blog</li>
-                        <li class="breadcrumb-item active" aria-current="page">Edit</li>
-                    </ol>
-                </nav>
+                    <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">{{$surveyForm->name}}</h1>
             </div>
         </div>
     </div>
@@ -34,7 +27,7 @@
         <form id="save-form">
             <div class="block">
                 <div class="block-header block-header-default">
-                    <a class="btn btn-alt-secondary" href="be_pages_blog_post_manage.html">
+                    <a class="btn btn-alt-secondary" href="{{route('employee.survey-responses.index')}}">
                         <i class="fa fa-arrow-left me-1"></i> แบบสอบถาม
                     </a>
                 </div>
@@ -45,27 +38,33 @@
                                 @foreach ($questions as $questionIndex => $question)
                                     <h3>{{$question->name}}</h3>
                                     @foreach ($question->answers as $answerIndex => $answer)
-                                            @if($question->type == \App\Enums\SurveyFormEnum::ONE_CHOICE)
-                                                <div class="form-check form-check-inline mt-1">
-                                                    <input class="form-check-input col-sm-4" type="radio"
-                                                           name="oneChoiceAnswers[{{$questionIndex}}]" value="{{$answer->id}}"/>
-                                                    <label class="form-check-label">{{$answer->name}} ({{$answer->score}})</label>
-                                                </div>
-                                            @elseif($question->type == \App\Enums\SurveyFormEnum::MANY_CHOICE)
-                                                <div class="form-check form-check-inline mt-1">
-                                                    <input class="form-check-input col-sm-4" type="checkbox"
-                                                           name="manyChoiceAnswers[{{$questionIndex}}][]" value="{{$answer->id}}"
-                                                            {{$answer->id == $question->answer_id ? 'checked' : ''}}
-                                                    />
-                                                    <label class="form-check-label">{{$answer->name}} ({{$answer->score}})</label>
-                                                </div>
-                                            @endif
-                                            <br>
+                                        @if($question->type == \App\Enums\SurveyFormEnum::ONE_CHOICE)
+                                            <div class="form-check form-check-inline mt-1">
+                                                <input class="form-check-input col-sm-4" type="radio"
+                                                       name="oneChoiceAnswers[{{$questionIndex}}]"
+                                                       value="{{$answer->id}}"/>
+                                                <label class="form-check-label">{{$answer->name}} ({{$answer->score}}
+                                                    )</label>
+                                            </div>
+                                        @elseif($question->type == \App\Enums\SurveyFormEnum::MANY_CHOICE)
+                                            <div class="form-check form-check-inline mt-1">
+                                                <input class="form-check-input col-sm-4" type="checkbox"
+                                                       name="manyChoiceAnswers[{{$questionIndex}}][]"
+                                                       value="{{$answer->id}}"
+                                                    {{$answer->id == $question->answer_id ? 'checked' : ''}}
+                                                />
+                                                <label class="form-check-label">{{$answer->name}} ({{$answer->score}}
+                                                    )</label>
+                                            </div>
+                                        @endif
+                                        <br>
                                     @endforeach
                                     @if($question->type == \App\Enums\SurveyFormEnum::TEXT_CHOICE)
-                                        <textarea name="textAnswers[{{$questionIndex}}]" class="form-control"></textarea>
+                                        <textarea name="textAnswers[{{$questionIndex}}]"
+                                                  class="form-control"></textarea>
                                         <br>
                                     @endif
+                                    <p></p>
                                 @endforeach
                             @else
                                 <tr class="table-empty">
@@ -80,9 +79,9 @@
                 <div class="block-content bg-body-light">
                     <div class="row justify-content-center push">
                         <input type="hidden" name="surveyFormId" id="surveyFormId" value="{{ $surveyForm->id }}">
-{{--                        <input type="hidden" name="id" id="id" value="">--}}
+                        {{--                        <input type="hidden" name="id" id="id" value="">--}}
                         <x-forms.submit-group
-                        :optionals="['url' => 'employee.survey-responses.index', 'view' => empty($view) ? null : $view]"/>
+                            :optionals="['url' => 'employee.survey-responses.index', 'view' => empty($view) ? null : $view]"/>
                     </div>
                 </div>
             </div>

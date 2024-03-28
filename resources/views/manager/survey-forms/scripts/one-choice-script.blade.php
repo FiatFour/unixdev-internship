@@ -24,10 +24,10 @@
                 setLengthOneChoice: function () {
                     return this.oneChoices.length;
                 },
-                addOneChoiceLine() {
-                    var oneChoiceIndex = this.oneChoices.length
-                    this.pushOneChoiceLine(null, null, oneChoiceIndex);
-                },
+                // addOneChoiceLine() {
+                //     var oneChoiceIndex = this.oneChoices.length
+                //     this.pushOneChoiceLine(null, null, oneChoiceIndex);
+                // },
                 addOneChoice: function () {
                     this.setOneChoiceIndex(this.setLengthOneChoice());
                     this.clearOneChoiceModalData();

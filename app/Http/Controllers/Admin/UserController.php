@@ -106,21 +106,26 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->role = $request->role;
-        $user->department_id = $request->departmentId;
+        if ($request->departmentId != null) {
+            $user->department_id = $request->departmentId;
+        }
         if ($request->password != null) {
             $user->password = Hash::make($request->password);
         }
         $user->save();
 
-        EmployeeDepartment::where([
-            ['department_id', $request->oldDepartmentId],
-            ['user_id', $user->id]
-        ])->delete();
-
-        $employeeDepartment = new EmployeeDepartment();
-        $employeeDepartment->user_id = $user->id;
-        $employeeDepartment->department_id = $request->departmentId;
-        $employeeDepartment->save();
+        if($request->oldDepartmentId != null){
+            EmployeeDepartment::where([
+                ['department_id', $request->oldDepartmentId],
+                ['user_id', $user->id]
+            ])->delete();
+        }
+        if($user->role == RoleEnum::EMPLOYEE && $request->departmentId != null){
+            $employeeDepartment = new EmployeeDepartment();
+            $employeeDepartment->user_id = $user->id;
+            $employeeDepartment->department_id = $request->departmentId;
+            $employeeDepartment->save();
+        }
 
         $redirect_route = route('admin.users.index');
         return $this->responseValidateSuccess($redirect_route);
@@ -165,11 +170,10 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
-        EmployeeDepartment::where('user_id', $user->id)->delete();
-
         if (empty($user)) {
             return $this->responseEmpty('User');
         }
+        EmployeeDepartment::where('user_id', $user->id)->delete();
 
         $user->delete();
         return $this->responseDeletedSuccess('User', 'admin.users.index');
