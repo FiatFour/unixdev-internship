@@ -19,6 +19,7 @@ describe('register',()=>{
         cy.getElementByFullName('password').type(passwordad).should('be.visible');
         cy.getElementByFullName('confirmPassword').type(passwordad).should('be.visible');
         cy.getElementByFullName('register').click();
+        cy.location('pathname').should('equal','/login');
     });
     it('manager can register',()=>{
         cy.getElementByFullName('name').type(namemanager).should('be.visible');
@@ -26,6 +27,7 @@ describe('register',()=>{
         cy.getElementByFullName('password').type(passwordmanager).should('be.visible');
         cy.getElementByFullName('confirmPassword').type(passwordmanager).should('be.visible');
         cy.getElementByFullName('register').click();
+        cy.location('pathname').should('equal','/login');
     });
     it('employee can register',()=>{
         cy.getElementByFullName('name').type(nameemp).should('be.visible');
@@ -33,5 +35,6 @@ describe('register',()=>{
         cy.getElementByFullName('password').type(passwordemp).should('be.visible');
         cy.getElementByFullName('confirmPassword').type(passwordemp).should('be.visible');
         cy.getElementByFullName('register').click();
+        cy.location('pathname').should('equal','/login');
     });
 });

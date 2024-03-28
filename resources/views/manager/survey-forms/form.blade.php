@@ -19,11 +19,11 @@
                         <x-forms.input-new-line id="surveyName" :value="$surveyForm->name"
                                                 :name="'surveyName'"
                                                 :label="__('survey_forms.name')"
-                                                :optionals="['required' => true, 'placeholder' => __('survey_forms.input_name')]"/>
+                                                :optionals="['required' => true, 'placeholder' => __('survey_forms.input_name'),'text_test'=>'Form']"/>
                     </div>
                         <div class="col-6">
                             <x-forms.select-option id="departmentId" :value="null" :list="$departments"
-                                                   :label="__('departments.name')"/>
+                                                   :label="__('departments.name')" :optionals="['test_select' => 'selectSurveyForm']"/>
                         </div>
                 </div>
 
@@ -42,7 +42,7 @@
                 <div class="row">
                     {{--                    <input type="hidden" name="id" id="id" value="{{ $department->id }}">--}}
                     <x-forms.submit-group
-                        :optionals="['url' => 'manager.survey-forms.index', 'view' => empty($view) ? null : $view]"/>
+                        :optionals="['url' => 'manager.survey-forms.index', 'view' => empty($view) ? null : $view, 'submit'=>'submit']"/>
                 </div>
             </form>
         </div>

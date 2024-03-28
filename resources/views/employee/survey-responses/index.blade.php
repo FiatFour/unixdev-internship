@@ -43,7 +43,7 @@
                                             <a href="javascript:void(0)">{{ $d->name }}</a>
                                         </td>
                                         <td class="fw-semibold">
-                                            <a href="javascript:void(0)">{{ $d->department_id == Auth::user()->department_id ? 'แผนกหลัก' : 'แผนกรอง'  }}</a>
+                                            <a href="javascript:void(0)" data-test="department">{{ $d->department_id == Auth::user()->department_id ? 'แผนกหลัก' : 'แผนกรอง'  }}</a>
                                         </td>
                                         <td class="d-none d-sm-table-cell">
                                             {{ get_thai_date_format($d->created_at, 'd/m/Y') }}

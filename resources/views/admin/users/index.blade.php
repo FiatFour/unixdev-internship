@@ -48,7 +48,7 @@
                         <tbody>
                         @if(sizeof($lists) > 0)
                                 @foreach ($lists as $index => $d)
-                                    <tr>
+                                    <tr  data-test="{{$d->role? 'role' : 'roleRequire' }}">
                                         <td class="d-none d-sm-table-cell text-center">
                                             {{ $lists->firstItem() + $index }}</td>
                                         <td class="fw-semibold">

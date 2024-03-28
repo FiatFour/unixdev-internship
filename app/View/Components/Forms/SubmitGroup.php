@@ -18,9 +18,11 @@ class SubmitGroup extends Component
     public $data_status;
     public $icon_class_name;
     public $icon_draft_class_name;
+    public $submit;
 
     public function __construct($optionals = [])
     {
+        $this->submit = (isset($optionals['submit']) ? $optionals['submit'] : null);
         $this->input_class = (isset($optionals['input_class']) ? $optionals['input_class'] : 'text-end');
         $this->url = (isset($optionals['url']) ? $optionals['url'] : null);
         $this->fullurl = (isset($optionals['fullurl']) ? $optionals['fullurl'] : null);

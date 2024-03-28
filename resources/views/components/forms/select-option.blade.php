@@ -7,7 +7,7 @@
         <span class="label-helper" >{{ $label_suffix }}</span>
     @endif
 </label>
-<select name="{{ $id }}" id="{{ $id }}" class="{{ $select_class }}" style="width: 100%;"
+<select name="{{ $id }}" id="{{ $id }}" class="{{ $select_class }}" style="width: 100%;"  data-test="{{$test_select }}"
         @if ($multiple) multiple @endif >
     @if (!$ajax)
         <option value="">
@@ -15,7 +15,7 @@
         </option>
         @if (!empty($list))
             @foreach ($list as $key => $item)
-                <option value="{{ $item->id }}"
+                <option value="{{ $item->id }}" data-test="{{ $item->name }}"
                         @if (isset($item->image_url)) data-image="{{ $item->image_url }}" @endif
                         @if (isset($item->created_at)) data-subtext="{{ get_thai_date_format($item->created_at, 'j M Y') }}" @endif
                         @if (isset($item->default_url)) data-link="{{ $item->default_url }}" @endif
@@ -30,7 +30,7 @@
         @endif
     @else
         @if (!empty($value))
-            <option value="{{ $value }}">{{ $default_option_label }}</option>
+            <option value="{{ $value }}" data-test="departmaent">{{ $default_option_label }}</option>
         @endif
     @endif
 </select>

@@ -7,9 +7,9 @@
     <span class="label-helper" >{{ $label_suffix }}</span>
     @endif
 </label>
-<input type="{{ $type }}" class="form-control {{ $input_class }}" id="{{ $id }}"
+<input type="{{ $type }}" class="form-control {{ $input_class }}" id="{{ $id }}" 
     name="{{ $id }}" placeholder="{{ $placeholder }}" maxlength="{{ $maxlength }}" oninput="{{ $oninput }}" min="{{$min}}"
     {{ $required ? 'required' : '' }} value="{{ $value }}"
-    {{ $readonly ? 'readonly' : '' }}
+    {{ $readonly ? 'readonly' : '' }} data-test="{{$text_test}}"
     >
 <p></p>

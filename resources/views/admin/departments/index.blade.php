@@ -29,7 +29,7 @@
             <div class="block-content">
                 <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
                     <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3"></h1>
-                    <a href="{{ route('admin.departments.create') }}" type="button" class="btn btn-alt-primary my-2">
+                    <a href="{{ route('admin.departments.create') }}" type="button" class="btn btn-alt-primary my-2" data-test="createDepartment">
                         <i class="fa fa-fw fa-plus me-1"></i> {{ __('manage.btn_add') }}
                     </a>
                 </div>

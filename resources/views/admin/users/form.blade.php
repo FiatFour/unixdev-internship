@@ -29,21 +29,26 @@
                                        :optionals="['placeholder' => __('users.input_name')]"/>
                     </div>
                     <div class="col-6">
-                        <x-forms.select-option id="role" :value="$user->role" :list="$roles"
-                                               :label="__('users.role')"/>
+                        <x-forms.select-option id="role" :value="$user->role" :list="$roles" 
+                                               :label="__('users.role')" :optionals="['test_select' => 'role']"/>
                     </div>
                 </div>
                 <div class="row mb-4">
                     <div class="col-6">
+<<<<<<< HEAD
                         <x-forms.select-option id="departmentId" :value="$user->department_id" :list="$departments"
                                                :label="__('departments.main_name')"/>
+=======
+                        <x-forms.select-option id="departmentId" :value="$user->department_id" :list="$departments" :optionals="['test_select' => 'department']"
+                                               :label="__('departments.name')"/>
+>>>>>>> 4117ecfde63097c60bea2136fd635e8b74ea5f85
                     </div>
                 </div>
                 <div class="row">
                     <input type="hidden" name="id" id="id" value="{{ $user->id }}">
                     <input type="hidden" name="oldDepartmentId" id="oldDepartmentId" value="{{ $user->department_id }}">
                     <x-forms.submit-group
-                        :optionals="['url' => 'admin.users.index', 'view' => empty($view) ? null : $view]"/>
+                        :optionals="['url' => 'admin.users.index', 'view' => empty($view) ? null : $view, 'submit' => 'SUBMIT']"/>
                 </div>
             </form>
         </div>

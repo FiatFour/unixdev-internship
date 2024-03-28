@@ -21,12 +21,14 @@ class TextAreaNewLine extends Component
     public $html;
     public $html_class;
     public $readonly;
+    public $text_test;
 
     public function __construct($id, $value, $label, $optionals = [])
     {
         $this->id = $id;
         $this->value = $value;
         $this->label = $label;
+        $this->text_test =  (isset($optionals['text_test']) ? $optionals['text_test'] : null);
         $this->row =  (isset($optionals['row']) ? $optionals['row'] : 4);
         $this->sub_label =  (isset($optionals['sub_label']) ? $optionals['sub_label'] : false);
         $this->placeholder = (isset($optionals['placeholder']) ? $optionals['placeholder'] : '');
